@@ -24,7 +24,7 @@
 The first analysis evaluates the performance of various ProtonVPN servers and investigates the impact of server location on network performance.
 To accomplish this, measurements of latency, packet loss, and network bandwidth were taken using tools such as Speedtest-cli, Ping, and MTR.
 The second analysis focuses on DNS performance, beginning with an overview of DNS functionality
-and studying the contents of DNS queries and responses, followed by an evaluation of the performance of different DNS servers and different protocols.\newline
+and studying the contents of DNS queries and responses, followed by an evaluation of the performance of different DNS servers and protocols.\newline
 During the investigation, the latency, packet loss, and DNS query resolution time of different DNS servers was measured.
 The results provide insights into optimal server selection to maximize performance, privacy and security of the user.}
 \keywords{
@@ -61,6 +61,7 @@ Moreover ping provides only basic information about network connectivity, it doe
 \newline
 \pagestyle{OtherPage}
 
+\noindent
 \textbf{Traceroute} \newline
 The "traceroute" is another tool used to trace the path that packets take from one networked device to another.
 It sends a series of packets with increasing Time-to-Live (TTL) values and records the IP addresses of the devices that process the packets along the way.
@@ -83,7 +84,7 @@ it continues to send packets and displays the round-trip time and packet loss fo
 Mtr also includes additional features such as the ability to save the results to a file for later analysis.
 Despite this, mtr has the same limitations as traceroute.\newline
 \newline
-\textbf{speedtest} \newline
+\textbf{Speedtest} \newline
 The speedtest-cli is a command-line interface tool used to test the speed of an internet connection.
 It uses a server-client model to measure the download and upload speeds, as well as the latency of an internet connection.
 Speedtest-cli works by connecting to a nearby server and downloading and uploading a series of files.
@@ -92,7 +93,7 @@ It also measures the latency of the connection by sending and receiving small da
 Speedtest-cli provides detailed information about the internet connection, including the download speed, upload speed, and ping time.
 \subsection{Methodology and experimental setup}
 The purpose of this experiment was to evaluate the performance of three ProtonVPN servers, located in US, Netherlands and Japan,
-and examine how the choice of server location impacts network performance when accessing Google.com. The experiment was conducted on the researcher's laptop, located in Pavia.
+and examine how the choice of server location impacts network performance when accessing Google.com. The experiment was conducted on the researcher's laptop, located in Pavia.\newline
 To achieve this goal, several metrics were measured, including the latency of the network with and without using the VPNs,
 differences in the paths taken to reach the target point, the bandwidth of the user's network and the VPN servers.\newline
 To measure network latency, the ping command was used.
@@ -164,11 +165,9 @@ While network characteristics such as network congestion, network type (wired or
 and network hardware are the primary factors that affect available bandwidth, distance can also play a role in determining the quality of the connection.
 As distance increases, the time it takes for data to travel between the client and server increases as well,
 which can result in higher latency and potentially lower available bandwidth due to increased signal degradation, interference, and other factors.
-However, the impact of distance can be trascured, because the speed test servers has been selected in order to keep it constant for each server.
-which may be using wired connections. However, other factors such as network congestion, signal quality,
-and other network hardware could also be contributing to the difference in available bandwidth.
+However, the impact of distance can be trascured, because the speedtest servers has been selected in order to keep the distance constant for each VPN server.\newline
 When considering the impact of distance on bandwidth, it is important to note that the distance referred to here is the distance between the VPN server and
-the server selected by the speed test to perform the analysis. The distance between the VPN client and the VPN server is not considered because it does not affect the bandwidth.
+the server selected by the speed test to perform the analysis.
 
 \begin{figure}[H]
   \centering
@@ -230,7 +229,8 @@ The most important are shown in the following table.
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
   \centering
-  \begin{tabular}{cc}
+  \begin{tabular}{|c|c|}
+    \hline
     \linewidth=0cm
     Name server       & ip              \\
     \hline
@@ -238,6 +238,7 @@ The most important are shown in the following table.
     Quad9             & 149.112.112.112 \\
     OpenDNS           & 208.67.220.220  \\
     Comodo Secure DNS & 8.20.247.20     \\
+    \hline
   \end{tabular}
   \caption{Local name servers used}\label{tab-1}
 \end{table}
@@ -245,7 +246,7 @@ The most important are shown in the following table.
 The dig command (shown below) was utilized to obtain information about a domain name by passing arguments that include the local name server
 to be used and the domain name for which we want to retrieve information.
 In this experiment, several local name servers, including the ones listed above, were used, as well as the one from the University of Pavia.
-Two domain names, achille.unipv.it and istat.it, were used for this purpose.
+Two domain names, achille.unipv.it and www.istat.it, were used for this purpose.
 \begin{lstlisting}
   dig  @8.8.4.4 achille.unipv.it
 \end{lstlisting}
@@ -254,7 +255,7 @@ the type of query, and the time-to-live (TTL). \newline
 To determine if an answer is authoritative, we need to examine the flags and check if the AA (Authoritative Answer) flag is present (Table \ref*{tab-2}).
 Analyzing the domain name achille.unipv.it, we find that only the local name server of the University of Pavia provides an authoritative answer.
 This is because the university's server is responsible for managing the domain unipv.it, which includes the subdomain achille.unipv.it.
-In contrast, for the domain name istat.it, none of the local name servers used provide an authoritative answer because they do not have authority over that domain.\newline
+In contrast, for the domain name www.istat.it, none of the local name servers used provide an authoritative answer because they do not have authority over that domain.\newline
 Interestingly, when the university's server is queried for information on istat.it, it does not return the requested information.
 This is because the university's server does not support recursion, which  is a mechanism that allows a name server to query other name servers if it does not have the requested information in its cache, unlike the other servers,
 and is therefore unable to contact the name servers needed to provide the requested information.
@@ -263,7 +264,8 @@ and is therefore unable to contact the name servers needed to provide the reques
 \begin{table}[H]
   \centering
   \tiny
-  \begin{tabular}{cccccc}
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
     \linewidth=0cm
     Name server         & Flags    & Domain name            & Record type & IP address             & Query time \\
     \hline
@@ -280,6 +282,7 @@ and is therefore unable to contact the name servers needed to provide the reques
     Comodo Secure DNS   & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 163        \\
     Comodo Secure DNS   & qr rd ra & 01a-istituto.istat.it. & A           & 193.204.90.6           & 163        \\
     University of Pavia & qr rd    & www.istat.it.          &             &                        & 55         \\
+    \hline
   \end{tabular}
   \caption{DNS responses for achille.unipv.it and www.istat.it}
   \label{tab-2}
@@ -307,7 +310,8 @@ The priority value is inversely proportional to the priority level. Therefore, a
 \begin{table}[H]
   \centering
   \tiny
-  \begin{tabular}{cccccc}
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
     \linewidth=0cm
     Name server & Flags    & Domain name           & TTL  & Priority & IP address                  \\
     \hline
@@ -320,6 +324,7 @@ The priority value is inversely proportional to the priority level. Therefore, a
     Google      & qr rd ra & universitadipavia.it. & 3120 & 1        & ASPMX.L.GOOGLE.COM.         \\
     Google      & qr rd ra & harvard.edu.          & 22   & 100      & mx0a-00171101.pphosted.com. \\
     Google      & qr rd ra & harvard.edu.          & 22   & 100      & mx0b-00171101.pphosted.com. \\
+    \hline
   \end{tabular}
   \caption{DNS responses for universitadipavia.it and harvard.edu mail servers}
   \label{tab-3}
@@ -331,7 +336,7 @@ The priority value is inversely proportional to the priority level. Therefore, a
 
 Two different domain names were used in this study: yjc.ir, which is an Iranian domain, and spec.org, which is an American domain.
 To obtain the IP addresses of the web servers associated with these domains, the dig command was used with the record type ANY.
-This allowed us to see not only the IPv4 addresses, but also all the resource records (RRs) associated with the domain, including emails, name servers, and other DNS records.
+This allowed for the observation of not only the IPv4 addresses, but also all the resource records (RRs) associated with the domain, including emails, name servers, and other DNS records.
 \begin{lstlisting}
   dig   @149.112.112.112 yjc.ir -t ANY
 \end{lstlisting}
@@ -343,9 +348,11 @@ This is not surprising, as DNSSEC adoption is still limited.
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
   \tiny
-  \begin{tabular}{cccccc}
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
     \linewidth=0cm
     Local NS & Web server & Flags    & Numberof RRs & IP Address    & RRs types       \\
+    \hline
     Google   & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
     Quad9    & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
     OpenDNS  & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
@@ -354,6 +361,7 @@ This is not surprising, as DNSSEC adoption is still limited.
     Quad9    & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
     OpenDNS  & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
     Comodo   & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
+    \hline
   \end{tabular}
   \caption{Sample DNS responses for yjc.ir and spec.org}
   \label{tab-4}
@@ -380,15 +388,15 @@ To determine the primary name server, a SOA (Start of Authority) query was perfo
 which provides information about the primary name server for the domain.
 In this case, the primary name server was identified as ns1.google.com.\newline
 \noindent
-The whois command is a useful tool for obtaining information about a domain, such as the registrar, registration date, and expiry date,
-and it is used to obtain additional information about the google.com domain.
+The whois command is a useful tool for obtaining information about a domain, the most relevant are shown in Table \ref{tab-6}.
 It results that the registrar for the  google.com domain is MarkMonitor Inc, the registration date is September 15th, 1997 and the expiry date is September 14th, 2028
 
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
   \centering
   \footnotesize
-  \begin{tabular}{cc}
+  \begin{tabular}{|c|c|}
+    \hline
     \linewidth=0cm
     Name Server     & IP Address           \\
     \hline
@@ -400,16 +408,46 @@ It results that the registrar for the  google.com domain is MarkMonitor Inc, the
     ns4.google.com. & 2001:4860:4802:38::a \\
     ns3.google.com. & 216.239.36.10        \\
     ns3.google.com. & 2001:4860:4802:36::a \\
+    \hline
   \end{tabular}
-  \caption{Sample DNS responses for yjc.ir and spec.org}
+  \caption{Google name servers and their IP addresses}
   \label{tab-5}
+\end{table}
+
+\rowcolors{2}{green!8}{green!18}
+\begin{table}[H]
+  \centering
+  \tiny
+  \begin{tabular}{|c|c|}
+    \hline
+    \linewidth=0cm
+    Field                                  & Value                      \\
+    \hline
+    Domain Name                            & google.com                 \\
+    Registrar URL                          & http://www.markmonitor.com \\
+    Updated Date                           & 2019-09-09T15:39:04+0000   \\
+    Creation Date                          & 1997-09-15T07:00:00+0000   \\
+    Registrar Registration Expiration Date & 2028-09-13T07:00:00+0000   \\
+    Registrar                              & MarkMonitor, Inc.          \\
+    Registrant Organization                & Google LLC                 \\
+    Registrant State/Province              & CA                         \\
+    Registrant Country                     & US                         \\
+    Name Server                            & ns2.google.com             \\
+    Name Server                            & ns4.google.com             \\
+    Name Server                            & ns1.google.com             \\
+    Name Server                            & ns3.google.com             \\
+    DNSSEC                                 & unsigned                   \\
+    \hline
+  \end{tabular}
+  \caption{most relevant fields returned by whois for google.com}
+  \label{tab-6}
 \end{table}
 \subsubsection*{5. Query one of the Name Servers identified in the previous experiment to obtain the
   IP address of the Name Servers of the domains unipv.it and
   cloudflare.com. How many IP addresses did you get? Why?}
-it was observed that all queries made using the name servers obtained in the previous point failed with a REFUSED status and noted that recursion is disabled.
-This was found to be due to the fact that Google's name servers were not authoritative for the domains unipv.it and cloudflare.com.
-Furthermore, with recursion disabled, these name servers were unable to communicate with other name servers to provide the requested information.
+It was observed that all queries made using the name servers obtained in the previous point failed with a REFUSED status and noted that recursion is disabled.
+That is because Google's name servers were not authoritative for the domains unipv.it and cloudflare.com.
+Furthermore, with recursion disabled, these name servers were unable to communicate with other name servers to provide the requested information.\newline
 It is important to note that in the DNS hierarchy, authoritative name servers are responsible for providing answers to queries related to a specific domain.
 In contrast, recursive name servers provide the user with the final answer by traversing through the DNS hierarchy to find the authoritative name server for the queried domain.
 Therefore, having a recursive name server with recursion disabled results in failure to resolve queries for non-authoritative domains.
@@ -446,22 +484,24 @@ Dnseval does not force the use of DNSSEC, but rather tells the DNS server to use
   set of queries. Does the performance vary with the Name Server? Does it depend
   on the type of query or on the geographic location of the Name Server?}
 To accurately measure the performance of different name servers, the dnseval command was utilized to query the name servers of the local DNS servers.
-In this experiment, a set of standardized queries were used to analysis which factors can affect the DNS performance.
-The name servers tested were located around the world (Table \ref*{tab-6}) to provide a comprehensive evaluation of performance across different regions,
+In this experiment, a set of standardized queries were used to analyse which factors can affect the DNS performance.
+The name servers tested were located around the world (Table \ref*{tab-7}) to provide a comprehensive evaluation of performance across different regions,
 for each of them 600 queries were performed for each query type.
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
   \centering
-  \begin{tabular}{cc}
+  \begin{tabular}{|c|c|}
+    \hline
     \linewidth=0cm
     Location & ip              \\
     \hline
     America  & 108.162.46.243  \\
     Japan    & 203.141.131.66  \\
     France   & 188.165.187.102 \\
+    \hline
   \end{tabular}
   \caption{Location and ip address of local name servers used}
-  \label{tab-6}
+  \label{tab-7}
 \end{table}
 
 As demonstrated by the graph in Figure \ref{fig-6}, the type of DNS query used does not have a significant impact on query resolution time.
@@ -482,7 +522,7 @@ In contrast, the location of the different nameservers has a significant impact 
 with name servers located closer to Pavia having shorter resolution times than those located further away.\newline
 As shown in Figure \ref{fig-7}, the nameserver located in France has a lower resolution time compared to those located in America and Japan.
 That is because name server in France is physically closer to Pavia than the ones in America and Japan, resulting in a lower resolution time.
-So,the distance that the DNS query has to travel is shorter, and there are fewer network nodes or routers that the query has to pass through, leading to less latency or delay in the response.
+So, the distance that the DNS query has to travel is shorter, and there are fewer network nodes or routers that the query has to pass through, leading to less latency or delay in the response.
 \begin{figure}[H]
   \centering
   \includegraphics[width=.7\columnwidth]{images/avgLat2.2.loc.png}
