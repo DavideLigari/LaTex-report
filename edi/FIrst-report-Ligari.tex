@@ -24,7 +24,7 @@
 The first analysis evaluates the performance of various ProtonVPN servers and investigates the impact of server location on network performance.
 To accomplish this, measurements of latency, packet loss, and network bandwidth were taken using tools such as Speedtest-cli, Ping, and MTR.
 The second analysis focuses on DNS performance, beginning with an overview of DNS functionality
-and studying the contents of DNS queries and responses, followed by an evaluation of the performance of different DNS servers and protocols.\newline
+and studying the contents of DNS queries and responses, followed by an evaluation of the performance of different DNS servers and protocols.\\
 During the investigation, the latency, packet loss, and DNS query resolution time of different DNS servers was measured.
 The results provide insights into optimal server selection to maximize performance, privacy and security of the user.}
 \keywords{
@@ -50,19 +50,19 @@ that can lead to high latency and poor network performance, particularly if the 
 In this report, the performance of different VPN servers, provided by ProtonVPN, are compared to a local internet connection.
 By comparing the performance of these connections, this report aims to provide valuable insights into the effectiveness of VPNs and assist users in selecting the best server location for their needs.
 \subsection{Tools used}
-\textbf{Ping} \newline
+\textbf{Ping} \\
 Ping is a network utility tool used to test the connectivity between two networked devices.
 It sends a small packet of data to a specific IP address or hostname and measures the time it takes for that packet to be received and returned.
-The result shows the round trip time (RTT), as well as the number of packets sent and received, and any packet loss that may have occurred.\newline
+The result shows the round trip time (RTT), as well as the number of packets sent and received, and any packet loss that may have occurred.\\
 While it is a useful tool for testing network connectivity, it has some limitations,
 it uses the ICMP protocol to send and receive packets, which may not always be allowed by network firewalls or routers, and it does not support different protocols like TCP or UDP.
 This means that if a network is configured to block ICMP traffic, the ping command may not work.
-Moreover ping provides only basic information about network connectivity, it does not provide information about bandwidth or the structure of the network.\newline
-\newline
+Moreover ping provides only basic information about network connectivity, it does not provide information about bandwidth or the structure of the network.\\
+\\
 \pagestyle{OtherPage}
 
 \noindent
-\textbf{Traceroute} \newline
+\textbf{Traceroute} \\
 The "traceroute" is another tool used to trace the path that packets take from one networked device to another.
 It sends a series of packets with increasing Time-to-Live (TTL) values and records the IP addresses of the devices that process the packets along the way.
 By analyzing the sequence of IP addresses returned by the traceroute command,
@@ -72,9 +72,9 @@ However, it may be inaccurate, because, due to network congestion or routing cha
 the path taken by packets may not always be the same as the path taken by traceroute packets.
 In addition, traceroute provides only basic information about the path of packets through the network,
 it only shows the path between the vantage point and the target point, not the complete structure of the network.
-For this reason it is crucial the choice of the vantage and target points.\newline
-\newline
-\textbf{MTR} \newline
+For this reason it is crucial the choice of the vantage and target points.\\
+\\
+\textbf{MTR} \\
 The mtr (short for "My traceroute") is a tool that combines the functionality of the "ping" and "traceroute" commands.
 It continuously sends packets to a destination IP address or hostname and displays  in real-time
 different statistics, such as average and standard deviation of the latency for each hop, percentage of packet loss.
@@ -82,9 +82,9 @@ Mtr works by sending a series of ICMP packets with increasing TTL values, simila
 However, unlike traceroute, mtr does not stop after reaching the destination device; instead,
 it continues to send packets and displays the round-trip time and packet loss for each hop along the route.
 Mtr also includes additional features such as the ability to save the results to a file for later analysis.
-Despite this, mtr has the same limitations as traceroute.\newline
-\newline
-\textbf{Speedtest} \newline
+Despite this, mtr has the same limitations as traceroute.\\
+\\
+\textbf{Speedtest} \\
 The speedtest-cli is a command-line interface tool used to test the speed of an internet connection.
 It uses a server-client model to measure the download and upload speeds, as well as the latency of an internet connection.
 Speedtest-cli works by connecting to a nearby server and downloading and uploading a series of files.
@@ -93,9 +93,9 @@ It also measures the latency of the connection by sending and receiving small da
 Speedtest-cli provides detailed information about the internet connection, including the download speed, upload speed, and ping time.
 \subsection{Methodology and experimental setup}
 The purpose of this experiment was to evaluate the performance of three ProtonVPN servers, located in US, Netherlands and Japan,
-and examine how the choice of server location impacts network performance when accessing Google.com. The experiment was conducted on the researcher's laptop, located in Pavia.\newline
+and examine how the choice of server location impacts network performance when accessing Google.com. The experiment was conducted on the researcher's laptop, located in Pavia.\\
 To achieve this goal, several metrics were measured, including the latency of the network with and without using the VPNs,
-differences in the paths taken to reach the target point, the bandwidth of the user's network and the VPN servers.\newline
+differences in the paths taken to reach the target point, the bandwidth of the user's network and the VPN servers.\\
 To measure network latency, the ping command was used.
 The mtr tool was utilized to observe the path taken to reach the target point and identify any differences in the paths when using different VPN servers.
 The speedtest command was used to measure the bandwidth of both the user's network and the VPN servers.
@@ -160,12 +160,12 @@ In order to have consistent data, this command was executed many times during th
   speedtest-cli --json  --server 6554 >> speedtest.json
 \end{lstlisting}
 Figure \ref*{fig-4} displays the bandwidth measurements for each network.
-The Netherlands has the highest bandwidth, followed by the US, the researcher's connection, and Japan.\newline
+The Netherlands has the highest bandwidth, followed by the US, the researcher's connection, and Japan.\\
 While network characteristics such as network congestion, network type (wired or wireless),
 and network hardware are the primary factors that affect available bandwidth, distance can also play a role in determining the quality of the connection.
 As distance increases, the time it takes for data to travel between the client and server increases as well,
 which can result in higher latency and potentially lower available bandwidth due to increased signal degradation, interference, and other factors.
-However, the impact of distance can be trascured, because the speedtest servers has been selected in order to keep the distance constant for each VPN server.\newline
+However, the impact of distance can be trascured, because the speedtest servers has been selected in order to keep the distance constant for each VPN server.\\
 When considering the impact of distance on bandwidth, it is important to note that the distance referred to here is the distance between the VPN server and
 the server selected by the speed test to perform the analysis.
 
@@ -184,36 +184,36 @@ It consists of several components, including DNS servers, resolvers, and recursi
 With its critical role in Internet connectivity, DNS performance and reliability are essential for ensuring optimal user experience and maintaining network security.
 
 \subsection{Tools used}
-\textbf{Dig} \newline
+\textbf{Dig} \\
 The dig command (short for "domain information groper") is a popular network administration tool used to perform DNS queries.
 It allows users to perform DNS lookups to check DNS records and obtain information about DNS configurations.
 It is a versatile tool that allows users to specify different query types, such as A, AAAA, MX, TXT, and others.
 It can also be used to perform reverse DNS queries, where an IP address is used to retrieve the corresponding domain name.
 In addition to provide detailed DNS query results, the dig command can also be used to troubleshoot DNS issues, such as misconfigured DNS servers,
-slow DNS resolution times, or DNS cache issues.\newline
-\newline
-\textbf{Dnstraceroute} \newline
+slow DNS resolution times, or DNS cache issues.\\
+\\
+\textbf{Dnstraceroute} \\
 Dnstraceroute is a command-line tool used to trace the path that DNS queries take when traversing the Internet.
 It works similarly to the traditional traceroute command, but instead of tracing the path that packets take,
 it traces the path that DNS queries take from the local machine to the destination server.
 Dnstraceroute sends DNS queries with increasing TTL (Time to Live) values,
 which causes each hop along the path to respond with an ICMP message indicating the hop's IP address.
-Its limitations are the same as traceroute,it may be inaccurate, because, due to network congestion or routing changes.\newline
-\newline
-\textbf{Dnseval} \newline
+Its limitations are the same as traceroute,it may be inaccurate, because, due to network congestion or routing changes.\\
+\\
+\textbf{Dnseval} \\
 Dnseval is a powerful and versatile tool that enables users to perform a predefined number of DNS queries to a specified domain name,
 providing valuable insights into the performance and reliability of DNS servers.
 With Dnseval, users can measure the time it takes to resolve a domain name, and obtain detailed statistics such as the average, minimum,
 and maximum query response times, as well as the percentage of failed queries.
 It also allows  to select the protocol to use (UDP, TCP, DOT or DOH), the type of query to perform (A, AAAA, MX, TXT, etc.),
-and choose whether to enable DNSSEC.\newline
-\newline
-\textbf{Whois} \newline
+and choose whether to enable DNSSEC.\\
+\\
+\textbf{Whois} \\
 The whois command allows users to look up information about domain names, IP addresses, and other network-related entities.
 The command retrieves publicly available data from a WHOIS database, which contains information such as the registered owner of the domain name,
 the domain registrar, the date of creation and expiration of the domain name, and the contact information for the domain owner.
 Whois is commonly used by network administrators, domain owners, and law enforcement agencies to gather information
-about network entities and to troubleshoot issues related to domain registration, ownership, and use.\newline
+about network entities and to troubleshoot issues related to domain registration, ownership, and use.\\
 
 \subsection{Methodology and experimental setup}
 In the first part of this experiment, various active tests were conducted to analyze the contents of DNS queries and responses,
@@ -251,11 +251,11 @@ Two domain names, achille.unipv.it and www.istat.it, were used for this purpose.
   dig  @8.8.4.4 achille.unipv.it
 \end{lstlisting}
 The DNS answers are composed of various fields that provide information about the domain name, such as the IP address associated with it,
-the type of query, and the time-to-live (TTL). \newline
+the type of query, and the time-to-live (TTL). \\
 To determine if an answer is authoritative, we need to examine the flags and check if the AA (Authoritative Answer) flag is present (Table \ref*{tab-2}).
 Analyzing the domain name achille.unipv.it, we find that only the local name server of the University of Pavia provides an authoritative answer.
 This is because the university's server is responsible for managing the domain unipv.it, which includes the subdomain achille.unipv.it.
-In contrast, for the domain name www.istat.it, none of the local name servers used provide an authoritative answer because they do not have authority over that domain.\newline
+In contrast, for the domain name www.istat.it, none of the local name servers used provide an authoritative answer because they do not have authority over that domain.\\
 Interestingly, when the university's server is queried for information on istat.it, it does not return the requested information.
 This is because the university's server does not support recursion, which  is a mechanism that allows a name server to query other name servers if it does not have the requested information in its cache, unlike the other servers,
 and is therefore unable to contact the name servers needed to provide the requested information.
@@ -300,7 +300,7 @@ By utilizing the dig command in this way, it is possible to obtain a detailed un
   dig   @8.8.4.4 -t MX harvard.edu
 \end{lstlisting}
 Table \ref*{tab-3} displays the results of the DNS queries performed for the domains universitadipavia.it and harvard.edu.
-The data is collected only from the Google name server since the results from other servers are identical.\newline
+The data is collected only from the Google name server since the results from other servers are identical.\\
 For the universitadipavia.it domain, we found 7 servers providing the email service, whereas for the harvard.edu domain, we found 2 email servers.
 Each email server has a priority value associated with it, which indicates the order in which the servers should be contacted in case of problems.
 The priority value is inversely proportional to the priority level. Therefore, a lower value indicates a higher priority.
@@ -382,11 +382,11 @@ This process can be repeated for all of the name servers associated with a given
 During the experiment, various local name servers were examined, revealing distinct behavior among them.
 For instance, Quad9 and Comodo Secure DNS provided the name servers in the answer section and their IP address in the additional section of their responses,
 thereby returning all four name servers and their ip address in a single query to the DNS.
-In contrast, OpenDNS and Google only returned the four name servers, requiring a separate query for each to obtain their IP addresses.\newline
-Table \ref*{tab-5} displays the name servers, which all belong to the same domain, google.com.\newline
+In contrast, OpenDNS and Google only returned the four name servers, requiring a separate query for each to obtain their IP addresses.\\
+Table \ref*{tab-5} displays the name servers, which all belong to the same domain, google.com.\\
 To determine the primary name server, a SOA (Start of Authority) query was performed,
 which provides information about the primary name server for the domain.
-In this case, the primary name server was identified as ns1.google.com.\newline
+In this case, the primary name server was identified as ns1.google.com.\\
 \noindent
 The whois command is a useful tool for obtaining information about a domain, the most relevant are shown in Table \ref{tab-6}.
 It results that the registrar for the  google.com domain is MarkMonitor Inc, the registration date is September 15th, 1997 and the expiry date is September 14th, 2028
@@ -447,7 +447,7 @@ It results that the registrar for the  google.com domain is MarkMonitor Inc, the
   cloudflare.com. How many IP addresses did you get? Why?}
 It was observed that all queries made using the name servers obtained in the previous point failed with a REFUSED status and noted that recursion is disabled.
 That is because Google's name servers were not authoritative for the domains unipv.it and cloudflare.com.
-Furthermore, with recursion disabled, these name servers were unable to communicate with other name servers to provide the requested information.\newline
+Furthermore, with recursion disabled, these name servers were unable to communicate with other name servers to provide the requested information.\\
 It is important to note that in the DNS hierarchy, authoritative name servers are responsible for providing answers to queries related to a specific domain.
 In contrast, recursive name servers provide the user with the final answer by traversing through the DNS hierarchy to find the authoritative name server for the queried domain.
 Therefore, having a recursive name server with recursion disabled results in failure to resolve queries for non-authoritative domains.
@@ -460,8 +460,8 @@ Therefore, having a recursive name server with recursion disabled results in fai
 To accurately measure the performance of a name server when processing multiple queries,
 the dnseval command has been utilized, setting the number of queries to 600 for each test run.
 This command was executed for each DNS protocol and security implementation being tested.
-To facilitate data processing, all results were saved in a JSON file using the -j option.\newline
-An example of the command used to test the performance of Google's name servers is shown below.\newline
+To facilitate data processing, all results were saved in a JSON file using the -j option.\\
+An example of the command used to test the performance of Google's name servers is shown below.\\
 The file servers.txt, contains a list of the name servers to query.
 \begin{lstlisting}
   dnseval -j dnsval.2.1.json -c 600 -f servers.txt google.com
@@ -519,7 +519,7 @@ Further research could be conducted to investigate the impact of query type on D
 
 
 In contrast, the location of the different nameservers has a significant impact on DNS resolution time,
-with name servers located closer to Pavia having shorter resolution times than those located further away.\newline
+with name servers located closer to Pavia having shorter resolution times than those located further away.\\
 As shown in Figure \ref{fig-7}, the nameserver located in France has a lower resolution time compared to those located in America and Japan.
 That is because name server in France is physically closer to Pavia than the ones in America and Japan, resulting in a lower resolution time.
 So, the distance that the DNS query has to travel is shorter, and there are fewer network nodes or routers that the query has to pass through, leading to less latency or delay in the response.
@@ -533,7 +533,7 @@ So, the distance that the DNS query has to travel is shorter, and there are fewe
   performance depend on the number of hops? Did you notice any
   expected/unexpected behavior?}
 
-To perform a sufficient number of queries, a bash script was created to execute 100 dnstraceroute tests for each name server throughout the day.\newline
+To perform a sufficient number of queries, a bash script was created to execute 100 dnstraceroute tests for each name server throughout the day.\\
 The results, shown in Figures \ref{fig-8} and \ref{fig-9}, indicate that latency is not necessarily correlated with the number of hops,
 as evidenced by openDNS having the highest latency but the lowest number of hops.
 Conversely, Google has a high number of hops compared to the others but the lowest latency.
