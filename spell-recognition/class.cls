@@ -1,355 +1,197 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{class}[2019/10/29 AJCEAM paper class]
-
-% Initial Statements
-\DeclareOption{11pt}{\OptionNotUsed}
-\DeclareOption{12pt}{\OptionNotUsed}
-\DeclareOption{onecolumn}{\OptionNotUsed}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\newif\if@isblind\@isblindfalse
-\DeclareOption{blind}{\@isblindtrue}
-% Language Statements
-\newif\iflang@eng
-\newif\iflang@por
-\def\lang@mutopterr{%
-  \PackageError{lang}{Options 'eng' and 'por' are mutually exclusive.}{}%
-}%
-\DeclareOption{eng}{%
-  \iflang@por\lang@mutopterr\fi
-  \lang@engtrue\lang@porfalse
-}
-\DeclareOption{por}{%
-  \iflang@eng\lang@mutopterr\fi
-  \lang@engfalse\lang@portrue
-}
-
+\newif\if@suppmat\@suppmattrue
+\DeclareOption{nosupp}{\@suppmatfalse}
+\ExecuteOptions{nosupp}
 \ProcessOptions\relax
-\LoadClass[twoside,a4paper,10pt,twocolumn,english]{article}
+\LoadClass{article}
 
-% Default language: English
-\iflang@eng
+\RequirePackage{etoolbox,xpatch}
+\RequirePackage{ifxetex,ifluatex}
+\RequirePackage{setspace}
+\RequirePackage[table]{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{geometry}
+\RequirePackage{rotating}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage[style]{abstract}
+\RequirePackage[marginal]{footmisc}
+\RequirePackage{caption,subcaption}
+\RequirePackage{enumitem}
+\RequirePackage{authblk}
+\RequirePackage{textcomp}
+\RequirePackage[absolute]{textpos}
+\RequirePackage[right]{lineno}
+\RequirePackage{amsmath}
+
+\def\@keywordsname{Keywords}
+\def\@authornotename{Author's notes}
+\def\@corrauthorname{Corresponding author}
+\def\@editorname{Edited by}
+\def\@runningauthor{}
+\def\@corrauthor{}
+\def\@authornote{}
+\definecolor{PANLightBlue}{RGB}{105,178,218}
+\definecolor{PANDarkBlue}{RGB}{19,126,194}
+\definecolor{PANMaroon}{RGB}{105,27,46}
+\definecolor{PANDarkGray}{RGB}{153,153,153}
+
+\RequirePackage{microtype}
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
 \else
-  \iflang@por
+  \ifluatex
+    \xetexorluatextrue
   \else
-    \lang@engtrue\lang@porfalse
+    \xetexorluatexfalse
   \fi
 \fi
 
-
-% Required Packages
-\usepackage[utf8]{inputenc}
-\iflang@eng
-  \usepackage[english]{babel}
-\fi
-\iflang@por
-  \usepackage[portuguese,english]{babel}
-\fi
-\usepackage{multirow}
-\usepackage[T1]{fontenc}
-\usepackage{ae,aecompl}
-\usepackage{pslatex}
-\usepackage[samesize]{cancel}
-\usepackage{graphicx}
-\usepackage{setspace}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[table]{xcolor}
-\usepackage{float}
-\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
-\usepackage{url}
-\Urlmuskip=0mu plus 1mu % break url lines
-\usepackage{calc}
-\usepackage{tabto}
-\usepackage{lettrine}
-\usepackage{listings}
-\usepackage{subcaption}
-\usepackage{biblatex}
-%%% PDF file setup
-\usepackage[bookmarks,
-  bookmarksopen = true,
-  bookmarksnumbered = true,
-  breaklinks = true,
-  colorlinks = true,
-  linkcolor = black,
-  urlcolor  = black,
-  citecolor = black,
-  anchorcolor = green,
-  hyperindex = true,
-  hyperfigures
-]{hyperref}
-
-\lstset{
-  basicstyle=\ttfamily\scriptsize,   % the size and font of the code
-  numbers=none,                   % where to put the line numbers
-  numberstyle=\scriptsize\color{gray},  % the style of the line numbers
-  stepnumber=1,                   % the step between two line numbers
-  numbersep=5pt,                  % how far the line numbers are from the code
-  backgroundcolor=\color{white},  % choose the background color of the code
-  showspaces=false,               % show spaces adding particular underscores
-  showstringspaces=false,         % underline spaces within strings
-  showtabs=false,                 % show tabs within strings adding particular underscores
-  frame=single,                   % adds a frame around the code
-  tabsize=1,                      % sets default tabsize to 2 spaces
-  captionpos=b,                   % sets the caption-position to bottom
-  breaklines=true,                % sets automatic line breaking
-  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-  escapeinside={\%*}{*)},
-  frame=single,
-  frameround=fttf,
-  framexleftmargin=0mm,
-  rulecolor=\color{white},
-}
-% Page setup
-\setlength{\hoffset}{-1in}
-\setlength{\voffset}{-1in}
-\setlength{\oddsidemargin}{1.5cm}
-\setlength{\evensidemargin}{1.5cm}
-\setlength{\topmargin}{0.4cm}
-\setlength{\headheight}{2.3cm}
-\setlength{\headsep}{0.2cm}
-\setlength{\textheight}{25.5 cm}
-\setlength{\textwidth}{17.5cm}
-\setlength{\footskip}{2 cm}
-\setlength{\columnsep}{0.5cm}
-
-% Author and Affiliate Setup
-\usepackage[noblocks]{authblk}
-\renewcommand\AB@affilsepx{\protect\par\protect\Affilfont}
-\iflang@eng
-  \renewcommand\Authands{ and }
-  \renewcommand\Authand{ and }
-\fi
-\iflang@por
-  \renewcommand\Authands{ e }
-  \renewcommand\Authand{ e }
-\fi
-\renewcommand{\Affilfont}{\fontsize{9}{12} \selectfont \itshape}
-\renewcommand{\Authfont}{\fontsize{12}{14} \selectfont}
-
-% Macro Declaration
-\def\publicationdate#1{\gdef\@publicationdate{#1}}   % Publication Date
-\def\abstract#1{\gdef\@englishabstract{#1}}        % Abstract in English
-\def\keywords#1{\gdef\@englishkeywords{#1}}        % Keywords in English
-\def\resumo#1{\gdef\@portugueseabstract{#1}}        % Resumen en inglés
-\def\palavraschave#1{\gdef\@portuguesekeywords{#1}}        % Palabras clave en inglés
-
-% Definition for contact data
-\def\contactauthor#1{\gdef\@thecontactauthor{#1}}
-\def\email#1{\gdef\@theemail{#1}}
-
-
-% Header Definitions
-\def\title#1{\gdef\@title{#1}\gdef\thetitle{#1}}
-\def\titulo#1{\gdef\@titulo{#1}}
-\def\shorttitle#1{\gdef\@theshorttitle{#1}}
-\def\firstauthor#1{\gdef\@thefirstauthor{#1}}
-
-\newcommand*{\authorheader}{%
-  \begingroup
-  \ifnum\value{authors}<4 % One author
-    \if@isblind
-      \iflang@eng
-        AUTHOR
-      \fi
-      \iflang@por
-        AUTOR
-      \fi
-    \else
-      \MakeUppercase{\@thefirstauthor}
-    \fi
-  \else % 4 or more authors
-    \if@isblind
-      \iflang@eng
-        1st. AUTHOR~{\itshape et al.}
-      \fi
-      \iflang@por
-        1ro. AUTOR~{\itshape et al.}
-      \fi
-    \else
-      {\MakeUppercase{\@thefirstauthor}~{\itshape et al.}}
-    \fi
-  \fi
-  \endgroup
-}
-\newcommand{\vcenteredinclude}[1]{\begingroup
-  \setbox0=\hbox{\includegraphics[height=\headheight]{#1}}%
-  \parbox{\wd0}{\box0}\endgroup}
-
-
-% Configuration of figure headings
-\usepackage{caption}
-\captionsetup[figure]{font=small,labelfont=bf,justification=centering}
-\captionsetup[figure]{name=Fig.}
-\DeclareCaptionFormat{myformat}{#1#2#3}%\rule{\linewidth}{.3pt}}
-\captionsetup[figure]{format=myformat}
-
-\captionsetup[table]{font=small,labelfont=bf,justification=centering}
-\captionsetup[table]{name=Table}
-\DeclareCaptionFormat{myformat}{#1#2#3}%\rule{\linewidth}{.3pt}}
-\captionsetup[table]{format=myformat}
-
-\usepackage{makecell} % break lines in cell tables
-\renewcommand\theadalign{cc}
-\renewcommand\theadgape{\Gape[4pt]}
-\renewcommand\cellgape{\Gape[4pt]}
-\addtolength{\belowcaptionskip}{-8pt}
-\addtolength{\abovecaptionskip}{0pt}
-
-
-% Work job cover
-\newcommand*\varhrulefill[1][0.4pt]{\leavevmode\leaders\hrule height#1\hfill\kern0pt}
-\renewcommand{\@maketitle}{%
-  \null
-  \onecolumn
-  \begingroup
-  \vspace{0cm}%
-  {\begin{center}%
-      \noindent\varhrulefill[0.25mm] \par
-      \iflang@eng
-      {\fontsize{20}{24} \selectfont \@title \par}
-      \fi
-      \iflang@por
-      {\fontsize{20}{24} \selectfont \@titulo \par}
-      \vspace{0.3cm}
-      {\fontsize{14}{16}\itshape \selectfont \@title \par}
-      \fi
-      \noindent\varhrulefill[0.25mm] \par
-      {\setlength{\tabcolsep}{0in}
-        \if@isblind
-          \iflang@eng
-          {\fontsize{12}{14} \selectfont Version for reviewers.} \\
-        \fi
-        \iflang@por
-        {\fontsize{12}{14} \selectfont Versão para revisores.} \\
-        \fi
-        \else
-        \begin{tabular}[c]{c}%
-          {\@author}                                         \\
-          {\fontsize{8}{10} \selectfont Contact: \@theemail} \\
-          {\fontsize{8}{10} \selectfont Date: \@publicationdate}
-        \end{tabular}
-        \fi
-      }
-    \end{center}}% end of \parbox
-  %\vspace{0.3cm}
-  \noindent\varhrulefill[0.25mm] \par
-  \vspace{0.4cm}
-  \iflang@eng
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
-  \fi
-  \iflang@por
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Resumo}}---\@portugueseabstract} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Palavras-chave}}---\@portuguesekeywords} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12}\itshape \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12}\itshape \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
-  \fi
-  \vspace{0.2cm}
-  \noindent\varhrulefill[0.25mm]
-  \twocolumn
-  \endgroup
-  %\vspace{0.5cm}
-} % end of \@maketitle
-
-%%% Header and footer settings
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}
-\fancypagestyle{FirstPage}{%
-  \fancyhf{}
-  \fancyhead[C]{\vcenteredinclude{images/logo.png}}
-  \fancyhead[L]{}
-  \fancyhead[R]{}
-
-}
-\fancypagestyle{OtherPage}{%
-  \fancyhf{}
-  \fancyhead[L]{}
-  \fancyhead[C]{{\fontsize{7}{10} \selectfont \MakeUppercase{\@theshorttitle}}}
-  \fancyhead[R]{{\fontsize{7}{10} \selectfont \authorheader}}
-
-}
-% Section Format Settings
-\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.~}
-
-\renewcommand*{\thesection}{\arabic{section}}
-\renewcommand{\section}{\@startsection{section}{1}{0mm}%
-  {-12pt}%
-  {6pt}%
-  {\setlength\parindent{0em} \fontsize{12}{14} \selectfont \bfseries\textsc}}%
-\renewcommand \thesubsection{\alph{subsection}}
-\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
-  {-12pt}%
-  {6pt}%
-  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \bfseries\textit}}%
-\renewcommand \thesubsubsection{\arabic{subsubsection}}
-\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
-  {-12pt}%
-  {6pt}%
-  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \textit}}
-
-
-
-% Set bibliography style
-\newcounter{iteminbib}
-\addtocounter{iteminbib}{0}
-\newlength{\bibmargin}
-\setlength{\bibmargin}{20pt}
-\TabPositions{\bibmargin}
-\newcommand{\quotes}[1]{``#1''}
-\newcommand{\insertbibliography}[1]{%
-  \setlength{\parindent}{0pt}
-  %\setlength{\bibsep}{4pt}
-  %\setlength\itemindent{0pt}
-  %\setlength{\bibhang}{\bibmargin}
-  {\setstretch{0.85}
-    \fontsize{8}{10} \selectfont
-    \iflang@eng
-      \bibliographystyle{un}
-      \renewcommand\refname{References}
-    \fi
-    \iflang@por
-      \bibliographystyle{IEEETran}
-      \renewcommand\refname{Referências}
-    \fi
-    \bibliography{#1}}
-}
-
-% Definitions for capital letter
-\newcommand{\firstword}[2]{\lettrine[findent=2pt]{\textbf{#1}}{}#2 }
-
-\if@isblind
-  \makeatletter
-  \AtBeginDocument{
-    \hypersetup{
-      pdfinfo={
-          Title={\@title},
-          Author={AUTHOR},
-          Keywords={\@englishkeywords},
-          Producer={AJCEAM/UFT},
-          Subject={\@englishabstract}
-        }
+\ifxetexorluatex
+  \RequirePackage[no-math]{fontspec}
+  \let\boldsymbol\symbf
+  % Patch microtype for older versions; from https://tex.stackexchange.com/a/373607/226
+  \@ifpackagelater{microtype}{2017/07/05}{}{%
+    \patchcmd{\MT@is@composite}
+    {\expandafter\expandafter\expandafter}
+    {\ifx\UnicodeEncodingName\@undefined\else
+        \expandafter\expandafter\expandafter\MT@is@uni@comp\MT@char\iffontchar\else\fi\relax
+      \fi\expandafter\expandafter\expandafter}
+    {}{}
+    \def\MT@is@uni@comp#1\iffontchar#2\else#3\fi\relax{%
+      \ifx\\#2\\\else\edef\MT@char{\iffontchar#2\fi}\fi
     }
   }
-  \makeatother
 \else
-  \makeatletter
-  \AtBeginDocument{
-    \hypersetup{
-      pdfinfo={
-          Title={\@title},
-          Author={\@thefirstauthor},
-          Keywords={\@englishkeywords},
-          Producer={AJCEAM/UFT},
-          Subject={\@englishabstract}
-        }
-    }
-  }
-  \makeatother
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
 \fi
+\RequirePackage[default]{sourcesanspro}
+\RequirePackage[nosymbolsc,slantedGreek]{newtxsf}
+
+\setstretch{1.15}
+
+\RequirePackage{geometry}
+\geometry{paperwidth=8.25in,
+  paperheight=11in,
+  left=2.1cm,
+  top=1.75cm,
+  bottom=2.4cm,
+  right=2.1cm,
+  footskip=1.5\baselineskip,
+  footnotesep=\baselineskip,
+  headheight=21\p@,
+  headsep=\baselineskip
+}
+
+\newcommand{\runningauthor}[1]{\def\@runningauthor{#1}}
+\newcommand{\shortname}[1]{\def\@shortname{#1}}
+\newcommand{\authornote}[1]{\def\@authornote{#1}}
+\newcommand{\corrauthor}[1]{\def\@corrauthor{#1}}
+
+
+\renewcommand{\Authfont}{\Large\bfseries}
+\renewcommand{\Affilfont}{\small\itshape\mdseries}
+\renewcommand\AB@authnote[1]{\textsuperscript{#1}}
+\renewcommand\AB@affilnote[1]{\textsuperscript{#1}}
+\setlength{\affilsep}{\baselineskip}
+
+\newcommand{\@cover@logo}{%
+  \begin{textblock*}{4cm}[1,0](\dimexpr\Gm@lmargin-1cm,\Gm@tmargin)
+    \fontsize{60\p@}{60\p@}\selectfont\raggedleft%
+    \textcolor{PANMaroon}{PA}
+  \end{textblock*}
+}
+\renewcommand{\@maketitle}{%
+  %\@cover@logo%
+  \noindent\begin{minipage}{0.9\linewidth}
+    \raggedright\setstretch{1.0}
+    {\LARGE\bfseries\@title\par}
+    \vskip\baselineskip
+    \@author\par
+  \end{minipage}\bigskip\normalfont\normalsize%
+}
+\appto{\maketitle}{%
+  \ifdefvoid{\@authornote}{}{\begingroup
+    \renewcommand{\thefootnote}{}
+    \footnotetext{\emph{\@authornotename:} \@authornote}%
+    \endgroup}%
+}
+
+\renewcommand{\abstitlestyle}[1]{{\large\bfseries #1\par}}
+\setlength{\absleftindent}{\z@}
+\setlength{\absrightindent}{\absleftindent}
+\preto{\abstract}{%
+  \setlength{\parindent}{\z@}%
+  \newcommand{\keywords}[1]{%
+    \emph{\textbf{\@keywordsname :} }#1\par
+  }
+  {\textcolor{PANDarkBlue}{\rule{\textwidth}{1.5\p@}}}\\%
+}
+\appto{\abstract}{%
+  \setlength{\parindent}{\z@}%
+  \setlength{\parskip}{1em}%
+  \vskip-\parskip%
+  \noindent\ignorespaces%
+}
+\appto{\endabstract}{%
+  {\raisebox{\baselineskip}{\textcolor{PANDarkBlue}{\rule{\textwidth}{1\p@}}}}%
+}
+
+\titleformat{\section}{\large\bfseries}{\hspace*{-1em}\makebox[\z@][r]{\thesection}}{1em}{}
+\titleformat{\subsection}{\large}{\hspace*{-1em}\makebox[\z@][r]{\thesubsection}}{1em}{}
+\titlespacing*{\section}{\z@}{\baselineskip}{\z@}
+\titlespacing*{\subsection}{\z@}{\baselineskip}{\z@}
+\titlespacing*{\subsubsection}{\z@}{\baselineskip}{\z@}
+\setcounter{secnumdepth}{2}
+
+\setlist{leftmargin=*,nosep}
+
+\setlength{\footnotemargin}{-1em}
+\pretocmd{\@makefntext}{%
+  \renewcommand{\@makefnmark}{\thefootnote}
+}{}{}
+
+\fancyhf{}
+\renewcommand{\footrulewidth}{1.5\p@}
+\renewcommand{\headrule}{}
+\preto{\footrule}{\begingroup\color{PANLightBlue}}
+\appto{\footrule}{\endgroup}
+%\fancyhead[L]{\hspace*{-4cm}\Huge\color{PANMaroon}PA}
+\fancyfoot[R]{\small\thepage}
+\fancyhead[L]{}
+\fancyhead[C]{\small\emph{\@shortname}}
+\fancyhead[L]{\small\emph{\@runningauthor}}
+
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \renewcommand{\footrule}{}
+  \fancyfoot[R]{\small\thepage}
+}
+
+\captionsetup*{singlelinecheck=false,font={small},labelfont={bf,color=PANDarkBlue},labelsep=period}
+\captionsetup*[table]{position=top}
+\captionsetup*[sub]{labelfont=small,justification=centering}
+\newcommand{\headrow}{\rowcolor{PANDarkGray}}
+\newcommand{\thead}[1]{\bfseries #1\rule[-1.2ex]{0pt}{2em}}
+\renewcommand{\arraystretch}{1.2}
+
+\RequirePackage[backend=biber,authordate,giveninits=true,uniquename=mininit,natbib]{biblatex-chicago}
+\xpatchbibmacro{name:andothers}{%
+  \bibstring{andothers}%
+}{%
+  \bibstring[\emph]{andothers}%
+}{}{}
+
+\newcommand{\insert@supplmat}{\section*{Supplementary Material}(This is dummy text) For supplementary material accompanying this paper, please visit \url{https://doi.org/10.1017/pan.xxxx.xx.}}
+\if@suppmat
+  \xpretocmd{\printbibliography}{\insert@supplmat}{}{}
+  \AtBeginEnvironment{thebibliography}{\insert@supplmat}
+\fi
+\renewcommand{\bibfont}{\small}
+
+\PassOptionsToPackage{hyphens}{url}
+\RequirePackage{hyperref}
+\hypersetup{colorlinks,allcolors=PANDarkBlue}
+\urlstyle{same}
