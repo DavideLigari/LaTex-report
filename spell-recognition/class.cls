@@ -88,6 +88,8 @@
 \newcommand{\shortname}[1]{\def\@shortname{#1}}
 \newcommand{\authornote}[1]{\def\@authornote{#1}}
 \newcommand{\corrauthor}[1]{\def\@corrauthor{#1}}
+\newcommand{\course}[1]{\def\@course{#1}}
+
 
 
 \renewcommand{\Authfont}{\Large\bfseries}
