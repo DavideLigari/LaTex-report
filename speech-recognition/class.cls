@@ -241,7 +241,7 @@
   \iflang@eng
     \noindent {\fontsize{9}{12} \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
     \vspace{0.3cm}
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
+    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Keywords }}---\@englishkeywords} \par
   \fi
   \iflang@por
     \noindent {\fontsize{9}{12} \selectfont {\bfseries{Resumo}}---\@portugueseabstract} \par

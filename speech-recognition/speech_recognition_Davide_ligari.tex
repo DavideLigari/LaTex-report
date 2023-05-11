@@ -28,7 +28,7 @@
     training a multilayer perceptron without hidden layers, and exploring different network architectures.
      To gain insights into the network's performance, a confusion matrix is constructed to summarize its behavior, and classification errors are thoroughly analyzed. 
      The experiments are replicated using different feature normalization techniques, batch sizes and lambda values, in order to understand how these parameters affect the model's performance.}
-\keywords{ MLP Neural network • Training • Speech recognition • Feature normalization • Confusion matrix}
+\keywords{ MLP Neural network • Training • Speech recognition • Feature normalization • Confusion matrix • Spectrogram}
 \date{\today}
 % Start document
 \begin{document}
@@ -45,40 +45,46 @@ By adjusting the weights of these connections through a process called backpropa
 They are widely used in tasks like image recognition, speech processing, and natural language understanding.
 
 \section{Visualize the data}
+Gaining a deep understanding of the data being processed can greatly assist in designing an effective model.
+With this goal in mind, Figure \ref{fig-1} presents the spectrogram of the initial training sample, providing a visual representation of the data.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.8\columnwidth]{images/sample_spectrogram.png}
+  \includegraphics[width=.6\columnwidth]{images/sample_spectrogram.png}
   \caption{Spectrogram of a sample of the dataset}
   \label{fig-1}
 \end{figure}
 \section{Batch size selection}
-
+Selecting an appropriate batch size is a critical factor in neural network training.
+Opting for a higher value facilitates smoother convergence towards the minimum point;
+however, each iteration becomes time-consuming as it needs to process a larger number of samples.
+Conversely, a very low batch size can lead to unstable convergence, requiring more iterations.
+On the positive side, each iteration is quicker since it processes only a limited number of samples.\newline
+The figure below illustrates the test accuracy for different epochs and batch sizes in a model without hidden layers.
+The model trained with a batch size of 10 exhibits gradual improvement but experiences oscillations.
+Differently, the 200-sized batch demonstrates more consistent progress, albeit at a slower pace compared to the 50 and 100-sized batches.
+Among these options, the 50-sized batch yields the highest accuracy, surpassing that of the 100-sized batch.
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.8\columnwidth]{images/batch_size.png}
+  \includegraphics[width=.6\columnwidth]{images/batch_size.png}
   \caption{Test accuracy for different batch sizes}
   \label{fig-2}
 \end{figure}
 \section{Network architecture}
 \pagestyle{OtherPage}
 
-\begin{figure*}[h]
-  \begin{subfigure}{.5\linewidth}
-    \includegraphics[width=.8\columnwidth]{images/train_structure.png}
-  \end{subfigure}%
-  \begin{subfigure}{.5\linewidth}
-    \includegraphics[width=.8\columnwidth]{images/test_structure.png}
-  \end{subfigure}
-  \caption{Train (on left) and test accuracy (on right) for different network architectures}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.6\columnwidth]{images/diff_structures.png}
+  \caption{Train and test accuracies for different network architectures}
   \label{fig-3}
-\end{figure*}
+\end{figure}
 
 \subsection{Choice of the optimal lambda}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.8\columnwidth]{images/lamda.png}
+  \includegraphics[width=.6\columnwidth]{images/lamda.png}
   \caption{Test accuracy for different lambda values}
   \label{fig-4}
 \end{figure}
@@ -103,14 +109,14 @@ They are widely used in tasks like image recognition, speech processing, and nat
 \section{Model analysis}
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.8\columnwidth]{images/confusion_matrix.png}
+  \includegraphics[width=.6\columnwidth]{images/confusion_matrix.png}
   \caption{Confusion matrix of the best model}
   \label{fig-5}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.8\columnwidth]{images/misclassified_words.png}
+  \includegraphics[width=.6\columnwidth]{images/misclassified_words.png}
   \caption{Spectrogram of the most 3 misclassified words, on left the correct word, on right the confused one}
   \label{fig-6}
 \end{figure}
@@ -118,14 +124,14 @@ They are widely used in tasks like image recognition, speech processing, and nat
 \section{Feature normalization}
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.8\columnwidth]{images/normalization_spectrogram.png}
+  \includegraphics[width=.6\columnwidth]{images/normalization_spectrogram.png}
   \caption{Spectrogram of a sample of the dataset after different normalizations}
   \label{fig-7}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.8\columnwidth]{images/test_diff_normalizations.png}
+  \includegraphics[width=.6\columnwidth]{images/test_diff_normalizations.png}
   \caption{Test accuracy for different normalizations}
   \label{fig-8}
 \end{figure}
