@@ -70,12 +70,28 @@ Among these options, the 50-sized batch yields the highest accuracy, surpassing 
   \caption{Test accuracy for different batch sizes}
   \label{fig-2}
 \end{figure}
-\section{Network architecture}
+
 \pagestyle{OtherPage}
+\section{Network architecture}
+Numerous neural networks with varying depths and widths were trained to determine the optimal structure
+and understand how performance is influenced by these characteristics. Evaluating the accuracy of training and
+testing together is essential as the models can be susceptible to overfitting and underfitting. \\
+Based on Figure \ref{fig-3}, it is evident that the network with 3 hidden layers and 1600, 512, 256, 128, and 35 neurons
+respectively achieved the highest performance. Conversely, the network without hidden layers, consisting of only 35 neurons,
+performed poorly in comparison. \\
+Furthermore, the figure demonstrates that increasing the depth of the network leads to improved training accuracy
+while the test accuracy remains relatively unchanged, indicating a potential issue of overfitting.
+This can be observed when transitioning from 2 to 3 hidden layers, where the model with 1600, 256, 128, 56, and 35 neurons
+achieved significantly higher training accuracy than the model with 1600, 256, 128, and 35 neurons,
+while their test accuracies were similar. The reason behind this discrepancy lies in the fact that increasing the depth of
+the network enhances its flexibility. \\
+Conversely, when increasing the width of the network by augmenting the number of neurons per level, both training and
+test accuracy improve proportionally. This occurs because such augmentation increases the complexity of the model without
+necessarily enhancing its flexibility.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.6\columnwidth]{images/diff_structures.png}
+  \includegraphics[width=.8\columnwidth]{images/diff_structures.png}
   \caption{Train and test accuracies for different network architectures}
   \label{fig-3}
 \end{figure}
