@@ -1,9 +1,9 @@
 \documentclass[eng]{class}
 
 % Publication Title
-\title{EDI: First/Second Lab Report}
+\title{EDI: Third/Fourth Lab Report}
 % Short title for the header (copy the main title if it is not too long)
-\shorttitle{EDI: First/Second Lab Report}
+\shorttitle{Third/Fourth Lab Report}
        
 % Authors
 \author[1]{D. Ligari 518592}
@@ -46,7 +46,36 @@ exploring their effects on PLTs and providing valuable insights to optimize webs
 \subsubsection*{Analyze and discuss the impacts of the number of parallel connections set inside the browser
   on the Page Load Times of commercial/institutional websites. Did you notice any expected or
   unexpected behavior?}
-
+The impact of increasing the number of connections on page loading time is evident and consistent, as depicted in Figure \ref{fig-1}.
+Experimental results clearly demonstrate that as the number of connections increases, the loading time consistently decreases,
+showcasing the advantage of parallel downloading.
+This effect can be attributed to the browser's ability to simultaneously download multiple files, resulting in an overall improvement in download speed.\\
+However, it's important to note that the relationship between the number of connections and loading time is influenced by the size of the webpage.
+For smaller page sizes, exemplified by the website \textit{www.pedranzini.it/}, the loading time remains relatively consistent regardless
+of the number of connections. This suggests that the page can be efficiently loaded with a limited number of connections due to its compact size.
+The downloading process for such pages is optimized, and further increasing the number of connections does not significantly impact the loading time.\\
+Conversely, for larger page sizes, such as the case of \textit{www.vallespluga.it/}, the loading time exhibits a significant decrease as
+the number of connections increases. This indicates that the page benefits from parallel connections to efficiently download its extensive content.
+As the page size increases, the impact of parallel connections on reducing loading time becomes more pronounced.\\
+To provide additional context, the table below presents the websites used for the analysis, along with their respective characteristics.
+\rowcolors{2}{purple!8}{purple!18}
+\begin{table}[H]
+  \tiny
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \linewidth=0cm
+    Website             & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
+    \hline
+    www.pedranzini.it/  & 180.40        & Validation              & 1.1          & Not supported \\
+    www.unica.it/       & 2570          & Validation              & 1.1          & Supported     \\
+    www.uniss.it/       & 2540          & Validation • Expiration & 1.1          & Supported     \\
+    www.vallespluga.it/ & 20120         & Validation              & 1.1          & Supported     \\
+    \hline
+  \end{tabular}
+  \caption{Website used for the analysis}
+  \label{tab-1}
+\end{table}
 \begin{figure}[H]
   \centering
   \includegraphics[width=\columnwidth]{images/plt_vs_conc_1.1.png}
@@ -61,6 +90,41 @@ exploring their effects on PLTs and providing valuable insights to optimize webs
   HTTP/1.1, HTTP/2 and HTTP/3 (possibly with unsecure and secure connections). Did you notice
   any expected or unexpected behavior?}
 
+
+To provide a comprehensive answer, an extensive analysis was conducted on multiple websites with varying characteristics, which are shown Table \ref{tab-2}.
+To ensure thorough testing, sites that supported multiple versions of the HTTP protocol were evaluated with each version.\\
+Upon examining the results displayed in Figure \ref{fig-2}, a notable observation is that websites supporting HTTP/2 or HTTP/3
+exhibit faster loading times compared to those supporting only HTTP/1.1, regardless of the cache policy implemented.
+This observation underscores the performance benefits of newer versions of the HTTP protocol.\\
+Furthermore, the analysis also shed light on the impact of different cache policies.
+Websites that support both validation and expiration cache policies were found to have shorter loading times compared to those supporting
+only the validation policy. This outcome can be attributed to the combined advantages of validating cached content and
+leveraging expiration times to minimize requests to the server. Conversely, websites without any caching mechanism displayed higher Page Load Times (PLTs),
+emphasizing the importance of effective caching in optimizing web performance.
+\rowcolors{2}{purple!8}{purple!18}
+\begin{table}[H]
+  \tiny
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \linewidth=0cm
+    Website              & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
+    \hline
+    www.pedranzini.it/   & 180.40        & Validation              & 1.1          & Not supported \\
+    www.unica.it/        & 2570          & Validation              & 1.1          & Supported     \\
+    www.uniss.it/        & 2540          & Validation • Expiration & 1.1          & Supported     \\
+    www.vallespluga.it/  & 20120         & Validation              & 1.1          & Supported     \\
+    www.istat.it/        & 11200         & Validation              & 1.1          & Supported     \\
+    www.unina.it/        & 2210          & Validation              & 1.1          & Supported     \\
+    www.apache.org/      & 2010          & Validation • Expiration & 3            & Supported     \\
+    www.studiocamer.com/ & 3340          & Validation • Expiration & 2 • 3        & Supported     \\
+    www.off---white.com/ & 6790          & Validation              & 1.1 • 2 • 3  & Supported     \\
+    www.google.com       & 2350          & Validation • Expiration & 1.1 • 2 • 3  & Supported     \\
+    \hline
+  \end{tabular}
+  \caption{Website used for the analysis}
+  \label{tab-2}
+\end{table}
 
 \begin{figure}[H]
   \centering
