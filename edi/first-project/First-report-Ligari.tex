@@ -115,10 +115,10 @@ This is the expected behavior, because if two endpoints are located in the same 
 However, if the endpoints are located on opposite sides of the world, like Italy and Japan or US, the data needs to travel across multiple continents and through many devices and links,
 resulting in a much longer latency.
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/ServerLatency.png}
-  \caption{Mean and standard deviation of the latency of the researcher's network and the VPN servers}
-  \label{fig-1}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/ServerLatency.png}
+    \caption{Mean and standard deviation of the latency of the researcher's network and the VPN servers}
+    \label{fig-1}
 \end{figure}
 \subsection{Latency analysis for each hop}
 While analyzing the overall latency of a network using tools such as ping can provide valuable insights into network performance,
@@ -139,16 +139,16 @@ On the other hand, the JP server has a very high average latency coupled with a 
 Overall, the graphs provide valuable information about network performance, highlighting the importance of both average latency and standard deviation.
 Further analysis is needed to determine the root causes of any performance issues.
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/meanLHops.png}
-  \caption{Mean of the hop latency of each network}
-  \label{fig-2}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/meanLHops.png}
+    \caption{Mean of the hop latency of each network}
+    \label{fig-2}
 \end{figure}
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/varLHops.png}
-  \caption{standard deviation of the hop latency of each network}
-  \label{fig-3}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/varLHops.png}
+    \caption{standard deviation of the hop latency of each network}
+    \label{fig-3}
 \end{figure}
 
 \subsection{Bandwidth analysis}
@@ -170,10 +170,10 @@ When considering the impact of distance on bandwidth, it is important to note th
 the server selected by the speed test to perform the analysis.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/ServerBandwidth.png}
-  \caption{Mean of download and upload speed of the researcher's network and the VPN servers}
-  \label{fig-4}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/ServerBandwidth.png}
+    \caption{Mean of download and upload speed of the researcher's network and the VPN servers}
+    \label{fig-4}
 \end{figure}
 \section{Evaluation of DNS Functionalities}
 The Domain Name System (DNS) is an essential component of the Internet infrastructure that translates domain names into IP addresses,
@@ -228,19 +228,19 @@ The most important are shown in the following table.
 
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
-  \centering
-  \begin{tabular}{|c|c|}
-    \hline
-    \linewidth=0cm
-    Name server       & ip              \\
-    \hline
-    Google            & 8.8.4.4         \\
-    Quad9             & 149.112.112.112 \\
-    OpenDNS           & 208.67.220.220  \\
-    Comodo Secure DNS & 8.20.247.20     \\
-    \hline
-  \end{tabular}
-  \caption{Local name servers used}\label{tab-1}
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \linewidth=0cm
+        Name server       & ip              \\
+        \hline
+        Google            & 8.8.4.4         \\
+        Quad9             & 149.112.112.112 \\
+        OpenDNS           & 208.67.220.220  \\
+        Comodo Secure DNS & 8.20.247.20     \\
+        \hline
+    \end{tabular}
+    \caption{Local name servers used}\label{tab-1}
 \end{table}
 \subsubsection*{1. Query the DNS to obtain the IP addresses of achille.unipv.it and of another hostname in the TLD domain it, are the answers authoritative? Why?}
 The dig command (shown below) was utilized to obtain information about a domain name by passing arguments that include the local name server
@@ -262,35 +262,35 @@ and is therefore unable to contact the name servers needed to provide the reques
 
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
-  \centering
-  \tiny
-  \begin{tabular}{|c|c|c|c|c|c|}
-    \hline
-    \linewidth=0cm
-    Name server         & Flags    & Domain name            & Record type & IP address             & Query time \\
-    \hline
-    Google              & qr rd ra & achille.unipv.it.      & A           & 193.204.34.164         & 115        \\
-    Quad9               & qr rd ra & achille.unipv.it       & A           & 193.204.34.164         & 127        \\
-    OpenDNS             & qr rd ra & achille.unipv.it.      & A           & 193.204.34.164         & 75         \\
-    Comodo Secure DNS   & qr rd ra & achille.unipv.it.      & A           & 193.204.34.164         & 83         \\
-    Univerity of Pavia  & qr aa rd & achille.unipv.it.      & A           & 193.204.34.164         & 36         \\
-    Google              & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 3          \\
-    Google              & qr rd ra & 01a-istituto.istat.it. & A           & 193.204.90.63          &            \\
-    Quad9               & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 47         \\
-    OpenDNS             & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 39         \\
-    OpenDNS             & qr rd ra & 01a-istituto.istat.it. & A           & 193.204.90.6           & 39         \\
-    Comodo Secure DNS   & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 163        \\
-    Comodo Secure DNS   & qr rd ra & 01a-istituto.istat.it. & A           & 193.204.90.6           & 163        \\
-    University of Pavia & qr rd    & www.istat.it.          &             &                        & 55         \\
-    \hline
-  \end{tabular}
-  \caption{DNS responses for achille.unipv.it and www.istat.it}
-  \label{tab-2}
+    \centering
+    \tiny
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \linewidth=0cm
+        Name server         & Flags    & Domain name            & Record type & IP address             & Query time \\
+        \hline
+        Google              & qr rd ra & achille.unipv.it.      & A           & 193.204.34.164         & 115        \\
+        Quad9               & qr rd ra & achille.unipv.it       & A           & 193.204.34.164         & 127        \\
+        OpenDNS             & qr rd ra & achille.unipv.it.      & A           & 193.204.34.164         & 75         \\
+        Comodo Secure DNS   & qr rd ra & achille.unipv.it.      & A           & 193.204.34.164         & 83         \\
+        Univerity of Pavia  & qr aa rd & achille.unipv.it.      & A           & 193.204.34.164         & 36         \\
+        Google              & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 3          \\
+        Google              & qr rd ra & 01a-istituto.istat.it. & A           & 193.204.90.63          &            \\
+        Quad9               & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 47         \\
+        OpenDNS             & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 39         \\
+        OpenDNS             & qr rd ra & 01a-istituto.istat.it. & A           & 193.204.90.6           & 39         \\
+        Comodo Secure DNS   & qr rd ra & www.istat.it.          & CNAME       & 01a-istituto.istat.it. & 163        \\
+        Comodo Secure DNS   & qr rd ra & 01a-istituto.istat.it. & A           & 193.204.90.6           & 163        \\
+        University of Pavia & qr rd    & www.istat.it.          &             &                        & 55         \\
+        \hline
+    \end{tabular}
+    \caption{DNS responses for achille.unipv.it and www.istat.it}
+    \label{tab-2}
 \end{table}
 
 \subsubsection*{2. Query the DNS to obtain the name(s) of the mail servers associated with the
-  domain universitadipavia.it and harvard.edu. How many servers
-  provide this service? Is there anything specific associated with these RRs?}
+    domain universitadipavia.it and harvard.edu. How many servers
+    provide this service? Is there anything specific associated with these RRs?}
 
 To answer this question, the dig command was utilized again, but with a different specification.
 This time, the type of record (MX) was specified in order to retrieve only the email records.
@@ -308,31 +308,31 @@ The priority value is inversely proportional to the priority level. Therefore, a
 
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
-  \centering
-  \tiny
-  \begin{tabular}{|c|c|c|c|c|c|}
-    \hline
-    \linewidth=0cm
-    Name server & Flags    & Domain name           & TTL  & Priority & IP address                  \\
-    \hline
-    Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX2.GOOGLEMAIL.COM.      \\
-    Google      & qr rd ra & universitadipavia.it. & 3120 & 5        & ALT2.ASPMX.L.GOOGLE.COM.    \\
-    Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX5.GOOGLEMAIL.COM.      \\
-    Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX3.GOOGLEMAIL.COM.      \\
-    Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX4.GOOGLEMAIL.COM.      \\
-    Google      & qr rd ra & universitadipavia.it. & 3120 & 5        & ALT1.ASPMX.L.GOOGLE.COM.    \\
-    Google      & qr rd ra & universitadipavia.it. & 3120 & 1        & ASPMX.L.GOOGLE.COM.         \\
-    Google      & qr rd ra & harvard.edu.          & 22   & 100      & mx0a-00171101.pphosted.com. \\
-    Google      & qr rd ra & harvard.edu.          & 22   & 100      & mx0b-00171101.pphosted.com. \\
-    \hline
-  \end{tabular}
-  \caption{DNS responses for universitadipavia.it and harvard.edu mail servers}
-  \label{tab-3}
+    \centering
+    \tiny
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \linewidth=0cm
+        Name server & Flags    & Domain name           & TTL  & Priority & IP address                  \\
+        \hline
+        Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX2.GOOGLEMAIL.COM.      \\
+        Google      & qr rd ra & universitadipavia.it. & 3120 & 5        & ALT2.ASPMX.L.GOOGLE.COM.    \\
+        Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX5.GOOGLEMAIL.COM.      \\
+        Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX3.GOOGLEMAIL.COM.      \\
+        Google      & qr rd ra & universitadipavia.it. & 3120 & 10       & ASPMX4.GOOGLEMAIL.COM.      \\
+        Google      & qr rd ra & universitadipavia.it. & 3120 & 5        & ALT1.ASPMX.L.GOOGLE.COM.    \\
+        Google      & qr rd ra & universitadipavia.it. & 3120 & 1        & ASPMX.L.GOOGLE.COM.         \\
+        Google      & qr rd ra & harvard.edu.          & 22   & 100      & mx0a-00171101.pphosted.com. \\
+        Google      & qr rd ra & harvard.edu.          & 22   & 100      & mx0b-00171101.pphosted.com. \\
+        \hline
+    \end{tabular}
+    \caption{DNS responses for universitadipavia.it and harvard.edu mail servers}
+    \label{tab-3}
 \end{table}
 
 \subsubsection*{3. Query the DNS to obtain the IP address of a Web server located outside Europe; is
-  the answer authoritative? Why? How many RRs did you obtain? What is their type?
-  Does the domain sign any RR type using DNSSEC?}
+    the answer authoritative? Why? How many RRs did you obtain? What is their type?
+    Does the domain sign any RR type using DNSSEC?}
 
 Two different domain names were used in this study: yjc.ir, which is an Iranian domain, and spec.org, which is an American domain.
 To obtain the IP addresses of the web servers associated with these domains, the dig command was used with the record type ANY.
@@ -347,30 +347,30 @@ In both cases, the ad flag was 0, indicating that neither domain was signed with
 This is not surprising, as DNSSEC adoption is still limited.
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
-  \tiny
-  \begin{tabular}{|c|c|c|c|c|c|}
-    \hline
-    \linewidth=0cm
-    Local NS & Web server & Flags    & Numberof RRs & IP Address    & RRs types       \\
-    \hline
-    Google   & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
-    Quad9    & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
-    OpenDNS  & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
-    Comodo   & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
-    Google   & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
-    Quad9    & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
-    OpenDNS  & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
-    Comodo   & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
-    \hline
-  \end{tabular}
-  \caption{Sample DNS responses for yjc.ir and spec.org}
-  \label{tab-4}
+    \tiny
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \linewidth=0cm
+        Local NS & Web server & Flags    & Numberof RRs & IP Address    & RRs types       \\
+        \hline
+        Google   & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
+        Quad9    & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
+        OpenDNS  & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
+        Comodo   & yjc.ir     & qr rd ra & 7            & 94.182.146.39 & MX TXT SOA NS A \\
+        Google   & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
+        Quad9    & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
+        OpenDNS  & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
+        Comodo   & spec.org   & qr rd ra & 8            & 38.146.202.4  & MX TXT SOA NS A \\
+        \hline
+    \end{tabular}
+    \caption{Sample DNS responses for yjc.ir and spec.org}
+    \label{tab-4}
 \end{table}
 \subsubsection*{4. Query the DNS to obtain the IP addresses of the Name Servers of a company
-  located outside Europe; how many queries did you execute? What type(s) of
-  queries? How many Name Servers are associated with the company? Do they
-  belong to the same domain? Can you identify the primary Name Server? Why?
-  Who registered the domain? When will it expire?}
+    located outside Europe; how many queries did you execute? What type(s) of
+    queries? How many Name Servers are associated with the company? Do they
+    belong to the same domain? Can you identify the primary Name Server? Why?
+    Who registered the domain? When will it expire?}
 To obtain the IP addresses of the name servers associated with a particular domain, the dig command can be utilized with the record type NS.
 This query will return the name servers of the domain.
 In order to obtain the IP addresses, the dig command must be used again, this time with the record type A.
@@ -393,58 +393,58 @@ It results that the registrar for the  google.com domain is MarkMonitor Inc, the
 
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
-  \centering
-  \footnotesize
-  \begin{tabular}{|c|c|}
-    \hline
-    \linewidth=0cm
-    Name Server     & IP Address           \\
-    \hline
-    ns1.google.com. & 216.239.32.10        \\
-    ns1.google.com. & 2001:4860:4802:32::a \\
-    ns2.google.com. & 216.239.34.10        \\
-    ns2.google.com. & 2001:4860:4802:34::a \\
-    ns4.google.com. & 216.239.38.10        \\
-    ns4.google.com. & 2001:4860:4802:38::a \\
-    ns3.google.com. & 216.239.36.10        \\
-    ns3.google.com. & 2001:4860:4802:36::a \\
-    \hline
-  \end{tabular}
-  \caption{Google name servers and their IP addresses}
-  \label{tab-5}
+    \centering
+    \footnotesize
+    \begin{tabular}{|c|c|}
+        \hline
+        \linewidth=0cm
+        Name Server     & IP Address           \\
+        \hline
+        ns1.google.com. & 216.239.32.10        \\
+        ns1.google.com. & 2001:4860:4802:32::a \\
+        ns2.google.com. & 216.239.34.10        \\
+        ns2.google.com. & 2001:4860:4802:34::a \\
+        ns4.google.com. & 216.239.38.10        \\
+        ns4.google.com. & 2001:4860:4802:38::a \\
+        ns3.google.com. & 216.239.36.10        \\
+        ns3.google.com. & 2001:4860:4802:36::a \\
+        \hline
+    \end{tabular}
+    \caption{Google name servers and their IP addresses}
+    \label{tab-5}
 \end{table}
 
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
-  \centering
-  \tiny
-  \begin{tabular}{|c|c|}
-    \hline
-    \linewidth=0cm
-    Field                                  & Value                      \\
-    \hline
-    Domain Name                            & google.com                 \\
-    Registrar URL                          & http://www.markmonitor.com \\
-    Updated Date                           & 2019-09-09T15:39:04+0000   \\
-    Creation Date                          & 1997-09-15T07:00:00+0000   \\
-    Registrar Registration Expiration Date & 2028-09-13T07:00:00+0000   \\
-    Registrar                              & MarkMonitor, Inc.          \\
-    Registrant Organization                & Google LLC                 \\
-    Registrant State/Province              & CA                         \\
-    Registrant Country                     & US                         \\
-    Name Server                            & ns2.google.com             \\
-    Name Server                            & ns4.google.com             \\
-    Name Server                            & ns1.google.com             \\
-    Name Server                            & ns3.google.com             \\
-    DNSSEC                                 & unsigned                   \\
-    \hline
-  \end{tabular}
-  \caption{most relevant fields returned by whois for google.com}
-  \label{tab-6}
+    \centering
+    \tiny
+    \begin{tabular}{|c|c|}
+        \hline
+        \linewidth=0cm
+        Field                                  & Value                      \\
+        \hline
+        Domain Name                            & google.com                 \\
+        Registrar URL                          & http://www.markmonitor.com \\
+        Updated Date                           & 2019-09-09T15:39:04+0000   \\
+        Creation Date                          & 1997-09-15T07:00:00+0000   \\
+        Registrar Registration Expiration Date & 2028-09-13T07:00:00+0000   \\
+        Registrar                              & MarkMonitor, Inc.          \\
+        Registrant Organization                & Google LLC                 \\
+        Registrant State/Province              & CA                         \\
+        Registrant Country                     & US                         \\
+        Name Server                            & ns2.google.com             \\
+        Name Server                            & ns4.google.com             \\
+        Name Server                            & ns1.google.com             \\
+        Name Server                            & ns3.google.com             \\
+        DNSSEC                                 & unsigned                   \\
+        \hline
+    \end{tabular}
+    \caption{most relevant fields returned by whois for google.com}
+    \label{tab-6}
 \end{table}
 \subsubsection*{5. Query one of the Name Servers identified in the previous experiment to obtain the
-  IP address of the Name Servers of the domains unipv.it and
-  cloudflare.com. How many IP addresses did you get? Why?}
+    IP address of the Name Servers of the domains unipv.it and
+    cloudflare.com. How many IP addresses did you get? Why?}
 It was observed that all queries made using the name servers obtained in the previous point failed with a REFUSED status and noted that recursion is disabled.
 That is because Google's name servers were not authoritative for the domains unipv.it and cloudflare.com.
 Furthermore, with recursion disabled, these name servers were unable to communicate with other name servers to provide the requested information.\\
@@ -453,10 +453,10 @@ In contrast, recursive name servers provide the user with the final answer by tr
 Therefore, having a recursive name server with recursion disabled results in failure to resolve queries for non-authoritative domains.
 \subsection{Performance experiments}
 \subsubsection*{1. Measure the performance of a Name Server when processing multiple queries. Did
-  you notice any variability? Any expected/unexpected behavior? Does the
-  performance depend on the transport protocol (i.e., UDP, TCP) or on usage of
-  encrypted transmissions (i.e., DoT, DoH)? Does the performance vary when
-  DNSSEC is enabled?}
+    you notice any variability? Any expected/unexpected behavior? Does the
+    performance depend on the transport protocol (i.e., UDP, TCP) or on usage of
+    encrypted transmissions (i.e., DoT, DoH)? Does the performance vary when
+    DNSSEC is enabled?}
 To accurately measure the performance of a name server when processing multiple queries,
 the dnseval command has been utilized, setting the number of queries to 600 for each test run.
 This command was executed for each DNS protocol and security implementation being tested.
@@ -474,34 +474,34 @@ Furthermore, the DNSSEC protocol was tested using Option D, but no significant d
 Dnseval does not force the use of DNSSEC, but rather tells the DNS server to use it if available.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/avgLat2.1.png}
-  \caption{DNS query resolution time for different DNS protocols and security implementations}
-  \label{fig-5}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/avgLat2.1.png}
+    \caption{DNS query resolution time for different DNS protocols and security implementations}
+    \label{fig-5}
 \end{figure}
 
 \subsubsection*{2. Measure the performance of different Name Servers when processing the same
-  set of queries. Does the performance vary with the Name Server? Does it depend
-  on the type of query or on the geographic location of the Name Server?}
+    set of queries. Does the performance vary with the Name Server? Does it depend
+    on the type of query or on the geographic location of the Name Server?}
 To accurately measure the performance of different name servers, the dnseval command was utilized to query the name servers of the local DNS servers.
 In this experiment, a set of standardized queries were used to analyse which factors can affect the DNS performance.
 The name servers tested were located around the world (Table \ref*{tab-7}) to provide a comprehensive evaluation of performance across different regions,
 for each of them 600 queries were performed for each query type.
 \rowcolors{2}{green!8}{green!18}
 \begin{table}[H]
-  \centering
-  \begin{tabular}{|c|c|}
-    \hline
-    \linewidth=0cm
-    Location & ip              \\
-    \hline
-    America  & 108.162.46.243  \\
-    Japan    & 203.141.131.66  \\
-    France   & 188.165.187.102 \\
-    \hline
-  \end{tabular}
-  \caption{Location and ip address of local name servers used}
-  \label{tab-7}
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \linewidth=0cm
+        Location & ip              \\
+        \hline
+        America  & 108.162.46.243  \\
+        Japan    & 203.141.131.66  \\
+        France   & 188.165.187.102 \\
+        \hline
+    \end{tabular}
+    \caption{Location and ip address of local name servers used}
+    \label{tab-7}
 \end{table}
 
 As demonstrated by the graph in Figure \ref{fig-6}, the type of DNS query used does not have a significant impact on query resolution time.
@@ -511,10 +511,10 @@ However, it is important to note that this finding may not apply universally to 
 Further research could be conducted to investigate the impact of query type on DNS performance under different conditions.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/latQueryType.png}
-  \caption{DNS query resolution time for query type}
-  \label{fig-6}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/latQueryType.png}
+    \caption{DNS query resolution time for query type}
+    \label{fig-6}
 \end{figure}
 
 
@@ -524,14 +524,14 @@ As shown in Figure \ref{fig-7}, the nameserver located in France has a lower res
 That is because name server in France is physically closer to Pavia than the ones in America and Japan, resulting in a lower resolution time.
 So, the distance that the DNS query has to travel is shorter, and there are fewer network nodes or routers that the query has to pass through, leading to less latency or delay in the response.
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/avgLat2.2.loc.png}
-  \caption{DNS query resolution time for each DNS servers}
-  \label{fig-7}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/avgLat2.2.loc.png}
+    \caption{DNS query resolution time for each DNS servers}
+    \label{fig-7}
 \end{figure}
 \subsubsection*{3. Check the path followed by your queries using different Name Servers; does the
-  performance depend on the number of hops? Did you notice any
-  expected/unexpected behavior?}
+    performance depend on the number of hops? Did you notice any
+    expected/unexpected behavior?}
 
 To perform a sufficient number of queries, a bash script was created to execute 100 dnstraceroute tests for each name server throughout the day.\\
 The results, shown in Figures \ref{fig-8} and \ref{fig-9}, indicate that latency is not necessarily correlated with the number of hops,
@@ -542,17 +542,17 @@ but rather latency is influenced by the physical distance between the DNS server
 Other factors such as network congestion, routing policies, and hardware capabilities may also affect latency and must be taken into consideration.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=.7\columnwidth]{images/avgLat2.3.png}
-  \caption{Average latency for each local name servers}
-  \label{fig-8}
+    \centering
+    \includegraphics[width=.7\columnwidth]{images/avgLat2.3.png}
+    \caption{Average latency for each local name servers}
+    \label{fig-8}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/avglathops2.3.png}
-  \caption{Average latency for query type and for each hops of DNS servers}
-  \label{fig-9}
+    \centering
+    \includegraphics[width=\columnwidth]{images/avglathops2.3.png}
+    \caption{Average latency for query type and for each hops of DNS servers}
+    \label{fig-9}
 \end{figure}
 \section{Conclusions}
 In conclusion, this report has provided two analyses of network performance with regards to ProtonVPN servers and DNS servers.
