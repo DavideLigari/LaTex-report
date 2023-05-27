@@ -24,7 +24,7 @@
 }
 
 \ProcessOptions\relax
-\LoadClass[twoside,a4paper,10pt,twocolumn,english]{article}
+\LoadClass[twoside,a4paper,11pt,twocolumn,english]{article}
 
 % Default language: English
 \iflang@eng
@@ -104,14 +104,14 @@
 % Page setup
 \setlength{\hoffset}{-1in}
 \setlength{\voffset}{-1in}
-\setlength{\oddsidemargin}{1.5cm}
-\setlength{\evensidemargin}{1.5cm}
+\setlength{\oddsidemargin}{2.5cm}
+\setlength{\evensidemargin}{2.5cm}
 \setlength{\topmargin}{0.4cm}
-\setlength{\headheight}{2.3cm}
-\setlength{\headsep}{0.2cm}
-\setlength{\textheight}{25.5 cm}
-\setlength{\textwidth}{17.5cm}
-\setlength{\footskip}{2 cm}
+\setlength{\headheight}{2cm}
+\setlength{\headsep}{1cm}
+\setlength{\textheight}{24.5 cm}
+\setlength{\textwidth}{16.5cm}
+\setlength{\footskip}{2.5 cm}
 \setlength{\columnsep}{0.5cm}
 
 % Author and Affiliate Setup
@@ -238,18 +238,18 @@
   \noindent\varhrulefill[0.25mm] \par
   \vspace{0.4cm}
   \iflang@eng
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
+    \noindent {\fontsize{10}{12} \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
     \vspace{0.3cm}
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
+    \noindent {\fontsize{10}{12} \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
   \fi
   \iflang@por
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Resumo}}---\@portugueseabstract} \par
+    \noindent {\fontsize{10}{12} \selectfont {\bfseries{Resumo}}---\@portugueseabstract} \par
     \vspace{0.3cm}
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Palavras-chave}}---\@portuguesekeywords} \par
+    \noindent {\fontsize{10}{12} \selectfont {\bfseries{Palavras-chave}}---\@portuguesekeywords} \par
     \vspace{0.3cm}
-    \noindent {\fontsize{9}{12}\itshape \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
+    \noindent {\fontsize{10}{12}\itshape \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
     \vspace{0.3cm}
-    \noindent {\fontsize{9}{12}\itshape \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
+    \noindent {\fontsize{10}{12}\itshape \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
   \fi
   \vspace{0.2cm}
   \noindent\varhrulefill[0.25mm]
@@ -273,8 +273,8 @@
 \fancypagestyle{OtherPage}{%
   \fancyhf{}
   \fancyhead[R]{\thepage}
-  \fancyhead[C]{{\fontsize{7}{10} \selectfont \MakeUppercase{\@theshorttitle}}}
-  \fancyhead[L]{{\fontsize{7}{10} \selectfont \authorheader}}
+  \fancyhead[C]{{\fontsize{7}{11} \selectfont \MakeUppercase{\@theshorttitle}}}
+  \fancyhead[L]{{\fontsize{7}{11} \selectfont \authorheader}}
 
 }
 % Section Format Settings
