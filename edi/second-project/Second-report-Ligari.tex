@@ -90,17 +90,22 @@ To provide additional context, the table below presents the websites used for th
   HTTP/1.1, HTTP/2 and HTTP/3 (possibly with unsecure and secure connections). Did you notice
   any expected or unexpected behavior?}
 
+To provide a comprehensive understanding, an extensive analysis was conducted on multiple websites with varying characteristics, as presented in Table \ref{tab-2}.
+Thorough testing was ensured by evaluating sites that supported multiple versions of the HTTP protocol with each version.\\
+Upon examining the results depicted in Figure \ref{fig-2}, a noteworthy observation emerges: websites supporting HTTP/2 or HTTP/3
+consistently exhibit faster loading times compared to those supporting only HTTP/1.1, regardless of the implemented cache policy.
+This finding underscores the undeniable performance benefits associated with the adoption of newer HTTP protocol versions.\\
+Furthermore, the analysis sheds light on the impact of different cache policies.
+Websites supporting both validation and expiration cache policies were found to have shorter loading times compared to those supporting only the validation policy.
+This outcome can be attributed to the combined advantages of validating cached content and leveraging expiration times to minimize server requests.
+In contrast, websites lacking any caching mechanism displayed higher Page Load Times (PLTs),
+underscoring the crucial role of effective caching in optimizing web performance.\\
+Considering that page load time is significantly influenced by page size, and the analyzed pages vary in size,
+the values displayed in Figure \ref{fig-2} have been normalized accordingly.
+Additionally, it is important to note that the analyzed sites contain objects served by different servers,
+resulting in requests using different versions of HTTP and cache policies. To address this issue,
+each site was assigned the most commonly used HTTP cache policy and protocol.
 
-To provide a comprehensive answer, an extensive analysis was conducted on multiple websites with varying characteristics, which are shown Table \ref{tab-2}.
-To ensure thorough testing, sites that supported multiple versions of the HTTP protocol were evaluated with each version.\\
-Upon examining the results displayed in Figure \ref{fig-2}, a notable observation is that websites supporting HTTP/2 or HTTP/3
-exhibit faster loading times compared to those supporting only HTTP/1.1, regardless of the cache policy implemented.
-This observation underscores the performance benefits of newer versions of the HTTP protocol.\\
-Furthermore, the analysis also shed light on the impact of different cache policies.
-Websites that support both validation and expiration cache policies were found to have shorter loading times compared to those supporting
-only the validation policy. This outcome can be attributed to the combined advantages of validating cached content and
-leveraging expiration times to minimize requests to the server. Conversely, websites without any caching mechanism displayed higher Page Load Times (PLTs),
-emphasizing the importance of effective caching in optimizing web performance.
 \rowcolors{2}{purple!8}{purple!18}
 \begin{table}[H]
   \tiny
@@ -134,9 +139,60 @@ emphasizing the importance of effective caching in optimizing web performance.
 \end{figure}
 
 \subsection{Performance analisys using  Apache HTTP server benchmarking tool}
+Ab (ApacheBench), it is a command-line tool that comes bundled with the Apache HTTP Server.
+It is designed to perform load testing and measure the performance of web servers.
+The "ab" tool allows users to simulate multiple concurrent requests to a web server and record various performance metrics,
+such as requests per second, latency, and throughput.
+Below an example of the command used to perform the analysis, where the number of concurrent connections is set to 2 and the number of requests to 30.
+\begin{lstlisting}
+  ab -c 2 -n 30 www.galbusera.it/chi-siamo/
+\end{lstlisting}
+
 \subsubsection*{Analyze and discuss the performance of different commercial/institutional websites obtained
   under different conditions using the ab – Apache HTTP server benchmarking tool. Did you
   notice any expected or unexpected behavior?}
+The websites listed in Table \ref{tab-3} were subjected to analysis using the 'ab' command to evaluate their performance under different conditions.
+Specifically, the impact of concurrency level on requests per second and transfer rate was assessed, as depicted in Figure \ref*{fig-3} and \ref*{fig-4} respectively.
+The results indicate that increasing the concurrency level leads to higher requests per second and transfer rate,
+aligning with the findings discussed in Section 1.a, where an increase in the number of connections resulted in decreased page load time.\\
+However, there were some unexpected results observed for certain websites. For instance, \textit{www.galbusera.it/chi-siamo/}
+exhibited a slight decrease in transfer rate and requests per second when transitioning from 4 to 8 connections.
+This anomaly could be attributed to factors like server congestion or limited network bandwidth at 8 connections.
+However, with 16 connections, network congestion might be alleviated, potentially improving performance.
+Alternatively, the website's server infrastructure might incorporate load balancing mechanisms that distribute requests evenly across
+a limited number of resources, causing a slight decrease in performance with 4 to 8 connections but optimizing resource allocation with 16 connections.\\
+Another anomalous finding was observed for \textit{www.pedranzini.it/}, which displayed a significantly higher number of
+requests per second compared to other websites but a lower transfer rate. This outcome can be attributed to the smaller size of the website,
+resulting in a higher number of requests per second despite the server's relatively lower performance in terms of transfer rate.\\
+\noindent
+To gain further insights, an additional analysis was conducted to evaluate the time distribution across the connecting, processing, and waiting phases,
+as depicted in Figure \ref*{fig-5}.
+The results illustrate that the time spent on the connection phase is relatively minimal when compared to the time allocated to processing and waiting.\\
+The graphs clearly demonstrate that the majority of time is dedicated to processing the request on the server and waiting for the necessary operations to be completed.
+This observation highlights the significance of server-side computations and any external dependencies involved in generating the response.
+The processing phase, which encompasses executing server-side scripts, performing database queries,
+or conducting complex computations, typically consumes a substantial portion of the overall time.\\
+Intriguingly, the waiting time, during which the server may be accessing external resources or performing additional computations
+before generating the complete response, is found to be lower than the processing time. This suggests that the waiting phase is generally efficient,
+possibly due to optimized resource access or caching mechanisms employed by the server.
+\rowcolors{2}{purple!8}{purple!18}
+\begin{table}[H]
+  \tiny
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \linewidth=0cm
+    Website                     & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
+    \hline
+    www.pedranzini.it/          & 180.40        & Validation              & 1.1          & Not supported \\
+    www.vallespluga.it/         & 20120         & Validation              & 1.1          & Supported     \\
+    www.galbusera.it/chi-siamo/ & 42147         & Validation • Expiration & 3            & Supported     \\
+    \hline
+  \end{tabular}
+  \caption{Website used for the analysis}
+  \label{tab-3}
+\end{table}
+
 
 \begin{figure}[H]
   \centering
@@ -144,20 +200,20 @@ emphasizing the importance of effective caching in optimizing web performance.
   \caption{Number of request per second for different number of concurrent connections for different sites}
   \label{fig-3}
 \end{figure}
-
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\columnwidth]{images/time_diff_server.png}
-  \caption{Time spent for the connection, for processing and for waiting for different sites}
+  \includegraphics[width=\columnwidth]{images/transf_diff_conc.png}
+  \caption{Transfer rate for different number of concurrent connections for different sites}
   \label{fig-4}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\columnwidth]{images/transf_diff_conc.png}
-  \caption{Transfer rate for different number of concurrent connections for different sites}
+  \includegraphics[width=\columnwidth]{images/time_diff_server.png}
+  \caption{Time spent for the connection, for processing and for waiting for different sites}
   \label{fig-5}
 \end{figure}
+
 \subsection{Performance analisys using h2load}
 \subsubsection*{Analyze and discuss the performance of different commercial/institutional websites obtained
   under different conditions using the nghttp and h2load tools. In the experiments with
