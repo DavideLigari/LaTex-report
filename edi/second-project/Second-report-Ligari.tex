@@ -78,7 +78,7 @@ To provide additional context, the table below presents the websites used for th
 \end{table}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\columnwidth]{images/plt_vs_conc_1.1.png}
+  \includegraphics[width=0.8\columnwidth]{images/plt_vs_conc_1.1.png}
   \caption{Page load time vs number of concurrent connections for different sites}
   \label{fig-1}
 \end{figure}
@@ -215,6 +215,32 @@ possibly due to optimized resource access or caching mechanisms employed by the 
 \end{figure}
 
 \subsection{Performance analisys using h2load}
+
+h2load is a command-line benchmarking tool specifically designed for testing the performance of HTTP/2 and HTTP/3 servers.
+It is part of the nghttp2 project, which focuses on developing and maintaining tools and libraries for working with HTTP/2 and HTTP/3 protocols.
+h2load allows you to simulate a large number of concurrent requests to a server and measure its performance under various conditions.
+It can be used to assess the server's capability to handle a high volume of traffic, evaluate response times, measure throughput,
+and identify potential bottlenecks or performance issues.
+Below an example of usage.
+\begin{lstlisting}
+  h2load --duration=30 -c 16 --warm-up-time=4  https://www.galbusera.it/chi-siamo/
+\end{lstlisting}
+
+\subsection{The role of Warm up time}
+The warm-up time refers to the initial period during which the load generator gradually ramps up
+the number of concurrent requests before reaching the desired load level for the test.\\
+The purpose of the warm-up time is to simulate a more realistic user behavior and allow the server to stabilize under increasing load.
+By gradually increasing the number of concurrent requests, it helps to avoid sudden spikes in traffic that may not accurately represent
+how users interact with the website.\\
+During the warm-up phase, the load generator starts with a lower number of concurrent requests and gradually
+increases it over a predefined period of time or until a specific load level is reached.
+This gradual increase allows the server to adjust to the increasing load, initialize any necessary resources,
+and optimize its performance before the actual testing phase begins.\\
+The duration of the warm-up time can vary depending on the specific testing scenario and the characteristics of the website being tested.
+It is typically determined based on factors such as the expected user behavior,
+the server's response time under increasing load, and any specific performance goals or requirements.\\
+By including a warm-up time in the testing process, the results obtained from h2load or similar tools are more representative of real-world usage patterns,
+providing a more accurate assessment of the website's performance and the server's ability to handle increasing loads over time.
 \subsubsection*{Analyze and discuss the performance of different commercial/institutional websites obtained
   under different conditions using the nghttp and h2load tools. In the experiments with
   h2load analyze the role of the warm-up time. Did you notice any expected or unexpected
