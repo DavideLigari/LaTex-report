@@ -186,7 +186,7 @@ possibly due to optimized resource access or caching mechanisms employed by the 
     \hline
     www.pedranzini.it/          & 180.40        & Validation              & 1.1          & Not supported \\
     www.vallespluga.it/         & 20120         & Validation              & 1.1          & Supported     \\
-    www.galbusera.it/chi-siamo/ & 42147         & Validation • Expiration & 3            & Supported     \\
+    www.galbusera.it/chi-siamo/ & 15610         & Validation • Expiration & 3            & Supported     \\
     \hline
   \end{tabular}
   \caption{Website used for the analysis}
@@ -241,10 +241,46 @@ It is typically determined based on factors such as the expected user behavior,
 the server's response time under increasing load, and any specific performance goals or requirements.\\
 By including a warm-up time in the testing process, the results obtained from h2load or similar tools are more representative of real-world usage patterns,
 providing a more accurate assessment of the website's performance and the server's ability to handle increasing loads over time.
+
+
 \subsubsection*{Analyze and discuss the performance of different commercial/institutional websites obtained
   under different conditions using the nghttp and h2load tools. In the experiments with
   h2load analyze the role of the warm-up time. Did you notice any expected or unexpected
   behavior?}
+To analyze the role of warm-up time, performance tests were conducted using h2load.
+The tests were designed to measure the impact of warm-up time and the number of connections on website performance.
+Each test ran for 30 seconds, varying the number of connections and warm-up times at 1, 2, 4, 8, and 16.\\
+Multiple websites were included in the analysis, ensuring a diverse range of warm-up times and connection settings.
+The obtained results were evaluated in terms of transfer rate, mean time, and standard deviation.\\
+Examining the transfer rate and mean time results, as displayed in Figure \ref{fig-6} and \ref{fig-7} respectively,
+it appears that warm-up time does not have a significant impact on these metrics.
+However, when analyzing the standard deviation, as shown in Figure \ref{fig-8}, it becomes evident that warm-up time plays a significant role.\\
+For most connection levels, a longer warm-up time corresponds to a lower standard deviation, with a warm-up time of 8 seconds exhibiting the lowest deviation.
+On the other hand, longer warm-up times lead to higher standard deviations. \\
+However, a different pattern emerges when considering a connection level of 16, where the standard deviation decreases with increasing warm-up time.\\
+These findings suggest that warm-up time can have varying effects on performance depending on the number of connections.
+While it does not significantly impact the transfer rate and mean time, it can contribute to reducing the variability of response times,
+indicated by the standard deviation. The relationship between warm-up time and performance metrics can be complex,
+influenced by factors such as server caching, resource availability, and network conditions.
+Further analysis and experimentation are necessary to understand the underlying reasons behind these observed results and their broader implications.
+\rowcolors{2}{purple!8}{purple!18}
+\begin{table}[H]
+  \tiny
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \linewidth=0cm
+    Website                     & Page size(KB) & Cache policy            & HTTP version & HTTPS     \\
+    \hline
+    www.youtube.com/            & 14050         & Validation • Expiration & 1.1          & supported \\
+    www.reddit.it/              & 17360         & Validation              & 2            & Supported \\
+    www.regionelombardia.it/    & 13580         & Validation • Expiration & 1.1          & Supported \\
+    www.galbusera.it/chi-siamo/ & 15610         & Validation • Expiration & 3            & Supported \\
+    \hline
+  \end{tabular}
+  \caption{Website used for the analysis}
+  \label{tab-4}
+\end{table}
 
 \begin{figure}[H]
   \centering
