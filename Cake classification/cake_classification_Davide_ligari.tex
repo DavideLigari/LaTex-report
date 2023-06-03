@@ -132,8 +132,13 @@ Similarly, the class 'carrot cake' is frequently mistaken for 'tiramisu'.\\
 To understand the reasons behind these misclassifications, a closer examination of images belonging to these classes is necessary
 (see Figure \ref{fig-5}). It becomes apparent that 'carrot cake' and 'tiramisu' share similar color schemes, often comprising shades of brown and white.
 Meanwhile, 'chocolate mousse' and 'ice cream' not only share similar colors but also have comparable shapes, contributing to the confusion between these two classes.\\
-Furthermore, Figure \ref{fig-6} showcases the prediction errors made by the model, accompanied by the confidence levels associated with each prediction.
-This visualization provides insights into the cases where the model's misclassifications occur, despite exhibiting high confidence.
+Furthermore, Figure \ref{fig-6} displays the misclassified images, with their corresponding confidence levels represented by the color map.\\
+Strikingly, a considerable number of images have been misclassified despite the model exhibiting high confidence in its predictions.\\
+This observation suggests that the model's misclassifications are not due to uncertainty or ambiguity in the predictions,
+but rather stem from inherent limitations or biases within the model itself.
+It is possible that the model is overly reliant on certain discriminative features or is sensitive to irrelevant variations in the data,
+leading to incorrect classifications with unwarranted confidence
+
 
 \begin{figure}[h]
     \centering
