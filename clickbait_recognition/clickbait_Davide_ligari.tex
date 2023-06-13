@@ -18,7 +18,7 @@
 \publicationdate{\today}
 % Place your particular definitions here
 \newcommand{\vect}[1]{\mathbf{#1}}  % vectors
-\github{https://github.com/DavideLigari01/cake-classification}
+\github{https://github.com/DavideLigari01/clickbaits-recognition}
 
 
 \abstract{
@@ -31,7 +31,7 @@
     a precision-oriented scenario that prioritizes minimizing false positives. 
 }
 
-\keywords{ Clickbait headers recognition • Naive bayes  • Logistic regression • Bag of words • Stemming}
+\keywords{ Clickbait headers recognition • Na\"ive bayes  • Logistic regression • Bag of words • Stemming • ROC curve • AUC}
 \date{\today}
 % Start document
 \begin{document}
@@ -71,11 +71,11 @@ This normalization process enhances the capture of word essence, independent of 
 Multiple models were trained for each of the variants, and their results were compared to identify the best combination of features.
 The objective was to determine the most effective feature selection approach that maximizes the classification model's performance.
 \section{Models used}
-\subsection{Naive Bayes}
-Naive Bayes is a popular and efficient classification algorithm based on Bayes' theorem.
+\subsection{Na\"ive Bayes}
+Na\"ive Bayes is a popular and efficient classification algorithm based on Bayes' theorem.
 It assumes that features are independent given the class label. The algorithm calculates the probability of a
 sample belonging to each class and assigns the class with the highest probability.
-Naive Bayes aims to minimize misclassification by selecting the class label that maximizes the posterior probability.
+Na\"ive Bayes aims to minimize misclassification by selecting the class label that maximizes the posterior probability.
 \subsubsection*{size of the vocabulary}
 \subsubsection*{Features selection}
 \subsection{Logistic regression}
