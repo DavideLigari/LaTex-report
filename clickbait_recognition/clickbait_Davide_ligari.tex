@@ -1,7 +1,7 @@
 \documentclass{class}
 
 % Publication Title
-\title{Clickbait Decoder:\\Your Secret Weapon Against Misleading Headlines!}
+\title{Clickbait Busters:\\ The Ultimate Browser that Saves You from Mindless Clicks!}
 % Short title for the header (copy the main title if it is not too long)
 \shorttitle{Clickbait recognition}
 
@@ -70,15 +70,19 @@ Additionally, stemming was performed to reduce words to their basic form, disreg
 This normalization process enhances the capture of word essence, independent of superficial grammatical differences.\\
 Multiple models were trained for each of the variants, and their results were compared to identify the best combination of features.
 The objective was to determine the most effective feature selection approach that maximizes the classification model's performance.
-\section{Models used}
-\subsection{Na\"ive Bayes}
+\section{Na\"ive Bayes}
 Na\"ive Bayes is a popular and efficient classification algorithm based on Bayes' theorem.
 It assumes that features are independent given the class label. The algorithm calculates the probability of a
 sample belonging to each class and assigns the class with the highest probability.
 Na\"ive Bayes aims to minimize misclassification by selecting the class label that maximizes the posterior probability.
+\subsection{Analysis based on accuracy}
 \subsubsection*{size of the vocabulary}
 \subsubsection*{Features selection}
-\subsection{Logistic regression}
+\subsection{Analysis based on FPR}
+\subsubsection*{size of the vocabulary}
+\subsubsection*{Features selection}
+\subsubsection*{Choice of the bias}
+\section{Logistic regression}
 Logistic Regression is a widely used supervised machine learning algorithm for binary classification.
 Unlike linear regression, which predicts continuous values, logistic regression models the probability of an instance belonging to a particular class.
 It estimates the relationship between the input features and the log-odds of the target class using a logistic function.\\
@@ -86,11 +90,13 @@ In logistic regression, the model's parameters are learned by maximizing the lik
 (also known as cross-entropy loss) during training.
 The log loss measures the dissimilarity between the predicted probabilities and the actual class labels.
 By minimizing the log loss, logistic regression aims to accurately classify instances and maximize the model's predictive performance.
-\subsubsection*{Choice of the learning rate}
-\subsubsection*{Choice of the vocabulary size}
+\subsection{Analysis based on accuracy}
+\subsubsection*{size of the vocabulary}
 \subsubsection*{Features selection}
-\subsubsection*{Number of iterations}
-\subsection{Comparison between the two models}
+\subsection{Analysis based on FPR}
+\subsubsection*{size of the vocabulary}
+\subsubsection*{Features selection}
+\subsubsection*{Choice of the bias}
 \section{Analysis of the best model}
 \subsection{Confusion matrix}
 \subsection{Most impactful words}
