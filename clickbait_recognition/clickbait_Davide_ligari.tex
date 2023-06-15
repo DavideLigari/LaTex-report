@@ -212,7 +212,7 @@ It was observed that the optimal vocabulary size for achieving the best performa
 
 
 \subsubsection*{Features selection}
-Regarding the feature selection, as evident from the graph in Figure \ref{fig-6}, it is observed that the Na\"ive Bayes classifier model without
+Regarding the feature selection, as evident from the graph in Figure \ref{fig-6}, it is observed that the model without
 stop words has a lower AUC (Area Under the Curve) compared to the other two models.
 On the other hand, the remaining two models exhibit the same area.
 Based on this observation, the classic model was chosen as it does not require any further processing of the samples.
@@ -251,7 +251,7 @@ rate of $10^{-2}$ was ultimately selected as the optimal choice.
     \caption{False Positive Rate for different values of the learning rate}
     \label{fig-8}
 \end{figure}
-\subsubsection*{size of the vocabulary}
+\subsubsection*{Size of the vocabulary}
 As shown in figure \ref{fig-9}, the false positive rate decreases as the size of the vocabulary increases,
 reaching a relatively stable point beyond 8000 words, with a value of 3.3\%.
 \begin{figure}[h]
@@ -324,7 +324,7 @@ Taking all factors into consideration, Naïve Bayes emerges as the preferred mod
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\columnwidth]{images/comparison.png}
+    \includegraphics[width=0.6\columnwidth]{images/comparison.png}
     \caption{ROC and AUC for the two models}
     \label{fig-11}
 \end{figure}
@@ -332,7 +332,7 @@ Taking all factors into consideration, Naïve Bayes emerges as the preferred mod
 \subsubsection*{Confusion matrix}
 The confusion matrix is a important tool in evaluating the performance of a binary classification model.
 It presents a comprehensive view of the model's predictions, displaying the count of correct and incorrect predictions for each class.\\
-Figure \ref{fig-12} showcases the confusion matrix obtained from the Na"ive Bayes model.
+Figure \ref{fig-12} showcases the confusion matrix obtained from the Na\"ive Bayes model.
 The depicted confusion matrix underscores the exceptional performance of the model.
 It exhibits a substantial number of accurate predictions while demonstrating a minimal count of erroneous predictions.
 Such results strongly indicate the model's effectiveness in correctly classifying instances and highlight its proficiency
@@ -368,13 +368,14 @@ However, it is important to note that Logistic Regression involves the optimizat
 Consequently, selecting the optimal model is not a straightforward decision. If the primary objective is to obtain the highest performing model,
 then Logistic Regression proves to be the preferred choice.
 On the other hand, if simplicity and faster training are prioritized,
-Na"ive Bayes emerges as the more suitable option. In this particular scenario, the Na"ive Bayes model was selected due to its simplicity and efficiency
+Na\"ive Bayes emerges as the more suitable option. In this particular scenario, the Na\"ive Bayes model was selected due to its simplicity and efficiency
 in the training process.
 \subsubsection*{Confusion matrix}
-In figura \ref{fig-14} is shown the confusion matrix obtained from the Na\"ive Bayes model.
-Da come si può notare il false positive rate è diminuito notevolmente rispetto al modello precedente.
-Solo 1 su 2000 è stato classificato come clickbait quando in realtà non lo era.
-Tuttavia, questo ha comportato un aumento dei false negative, che sono passati da 38 a 471.
+In Figure \ref{fig-14}, the confusion matrix derived from the Naïve Bayes model is presented.
+The analysis reveals a notable reduction in the false positive rate compared to the previous model.
+One instance in 2000 were falsely identified as clickbait, despite being non-clickbait content.
+However, it is worth noting that this improvement came at the cost of an increase in false negatives,
+which rose from 38 to 471 misclassified instances.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\columnwidth]{images/fpr_naive_conf_matrix.png}
