@@ -138,12 +138,12 @@
 
 % Configuration of figure headings
 \usepackage{caption}
-\captionsetup[figure]{font=small,labelfont=bf,justification=centering}
+\captionsetup[figure]{font=scriptsize,labelfont=bf,justification=centering}
 \captionsetup[figure]{name=Fig.}
 \DeclareCaptionFormat{myformat}{#1#2#3}%\rule{\linewidth}{.3pt}}
 \captionsetup[figure]{format=myformat}
 
-\captionsetup[table]{font=small,labelfont=bf,justification=centering}
+\captionsetup[table]{font=scriptsize,labelfont=bf,justification=centering}
 \captionsetup[table]{name=Table}
 \DeclareCaptionFormat{myformat}{#1#2#3}%\rule{\linewidth}{.3pt}}
 \captionsetup[table]{format=myformat}
@@ -223,12 +223,12 @@
 \renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
   {-12pt}%
   {6pt}%
-  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \bfseries\textit}}%
+  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \bfseries}}%
 \renewcommand \thesubsubsection{\arabic{subsubsection}}
 \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
   {-12pt}%
   {6pt}%
-  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \textit}}
+  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \bfseries\textit}}
 
 
 
