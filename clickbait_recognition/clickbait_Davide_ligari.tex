@@ -98,7 +98,7 @@ Therefore, selecting a vocabulary size of 6000 words is considered optimal as it
     \begin{subfigure}{.5\linewidth}
         \includegraphics[width=\linewidth]{images/naive_voc_size_ROC.png}
     \end{subfigure}
-    \caption{On left, train and test accuracy for different vocabulary size.On right, ROC and AUC}
+    \caption{On left train and test accuracy, on right ROC and AUC for different vocabulary size}
     \label{fig-1}
 \end{figure}
 \subsubsection*{Features selection}
@@ -117,7 +117,7 @@ As a result, the simplest option, the classical bag of words, emerges as the opt
     \begin{subfigure}{.5\linewidth}
         \includegraphics[width=\linewidth]{images/naive_features_sel_ROC.png}
     \end{subfigure}
-    \caption{On left, train and test accuracy for different features.On right, ROC and AUC}
+    \caption{On left train and test accuracy, on right ROC and AUC for different features}
     \label{fig-2}
 \end{figure}
 \subsection{Analysis based on False Positive Rate}
@@ -287,7 +287,7 @@ reaching a relatively stable point beyond 800 iterations, with a value of 3.35\%
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\columnwidth]{images/fpr_logreg_iters.png}
-    \caption{FPR for different size of vocabulary}
+    \caption{FPR for different iterations}
     \label{fig-10}
 \end{figure}
 \subsubsection*{Choice of the bias}
@@ -357,7 +357,7 @@ providing valuable information about the discriminative power of these influenti
     \begin{subfigure}{.5\linewidth}
         \includegraphics[width=\linewidth]{images/naive_no_click_weights.png}
     \end{subfigure}
-    \caption{On left, train and test accuracy for different vocabulary size.On right, ROC and AUC}
+    \caption{Most impactful words for classification. On left for clickbait, on right for non-clickbait}
     \label{fig-13}
 \end{figure}
 
