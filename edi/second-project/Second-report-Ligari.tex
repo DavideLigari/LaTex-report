@@ -1,9 +1,9 @@
 \documentclass[eng]{class}
 
 % Publication Title
-\title{EDI: Third/Fourth Lab Report}
+\title{EDI: Third Lab Report}
 % Short title for the header (copy the main title if it is not too long)
-\shorttitle{Third/Fourth Lab Report}
+\shorttitle{Third Lab Report}
        
 % Authors
 \author[1]{D. Ligari 518592}
@@ -44,8 +44,8 @@ exploring their effects on PLTs and providing valuable insights to optimize webs
 
 \subsection{Impact of parallel connections on PLTs}
 \subsubsection*{Analyze and discuss the impacts of the number of parallel connections set inside the browser
-  on the Page Load Times of commercial/institutional websites. Did you notice any expected or
-  unexpected behavior?}
+	on the Page Load Times of commercial/institutional websites. Did you notice any expected or
+	unexpected behavior?}
 The impact of increasing the number of connections on page loading time is evident and consistent, as depicted in Figure \ref{fig-1}.
 Experimental results clearly demonstrate that as the number of connections increases, the loading time consistently decreases,
 showcasing the advantage of parallel downloading.
@@ -60,35 +60,35 @@ As the page size increases, the impact of parallel connections on reducing loadi
 To provide additional context, the table below presents the websites used for the analysis, along with their respective characteristics.
 \rowcolors{2}{purple!8}{purple!18}
 \begin{table}[H]
-  \tiny
-  \centering
-  \begin{tabular}{|c|c|c|c|c|c|}
-    \hline
-    \linewidth=0cm
-    Website             & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
-    \hline
-    www.pedranzini.it/  & 180.40        & Validation              & 1.1          & Not supported \\
-    www.unica.it/       & 2570          & Validation              & 1.1          & Supported     \\
-    www.uniss.it/       & 2540          & Validation • Expiration & 1.1          & Supported     \\
-    www.vallespluga.it/ & 20120         & Validation              & 1.1          & Supported     \\
-    \hline
-  \end{tabular}
-  \caption{Website used for the analysis}
-  \label{tab-1}
+	\tiny
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\linewidth=0cm
+		Website             & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
+		\hline
+		www.pedranzini.it/  & 180.40        & Validation              & 1.1          & Not supported \\
+		www.unica.it/       & 2570          & Validation              & 1.1          & Supported     \\
+		www.uniss.it/       & 2540          & Validation • Expiration & 1.1          & Supported     \\
+		www.vallespluga.it/ & 20120         & Validation              & 1.1          & Supported     \\
+		\hline
+	\end{tabular}
+	\caption{Website used for the analysis}
+	\label{tab-1}
 \end{table}
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\columnwidth]{images/plt_vs_conc_1.1.png}
-  \caption{Page load time vs number of concurrent connections for different sites}
-  \label{fig-1}
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/plt_vs_conc_1.1.png}
+	\caption{Page load time vs number of concurrent connections for different sites}
+	\label{fig-1}
 \end{figure}
 
 \pagestyle{OtherPage}
 \subsection{Impact of caching policies on PLTs}
 \subsubsection*{Analyze and discuss the impacts of caching policies implemented by different
-  commercial/institutional websites on the Page Load Times. Consider websites that support
-  HTTP/1.1, HTTP/2 and HTTP/3 (possibly with unsecure and secure connections). Did you notice
-  any expected or unexpected behavior?}
+	commercial/institutional websites on the Page Load Times. Consider websites that support
+	HTTP/1.1, HTTP/2 and HTTP/3 (possibly with unsecure and secure connections). Did you notice
+	any expected or unexpected behavior?}
 
 To provide a comprehensive understanding, an extensive analysis was conducted on multiple websites with varying characteristics, as presented in Table \ref{tab-2}.
 Thorough testing was ensured by evaluating sites that supported multiple versions of the HTTP protocol with each version.\\
@@ -108,34 +108,34 @@ each site was assigned the most commonly used HTTP cache policy and protocol.
 
 \rowcolors{2}{purple!8}{purple!18}
 \begin{table}[H]
-  \tiny
-  \centering
-  \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    \linewidth=0cm
-    Website              & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
-    \hline
-    www.pedranzini.it/   & 180.40        & Validation              & 1.1          & Not supported \\
-    www.unica.it/        & 2570          & Validation              & 1.1          & Supported     \\
-    www.uniss.it/        & 2540          & Validation • Expiration & 1.1          & Supported     \\
-    www.vallespluga.it/  & 20120         & Validation              & 1.1          & Supported     \\
-    www.istat.it/        & 11200         & Validation              & 1.1          & Supported     \\
-    www.unina.it/        & 2210          & Validation              & 1.1          & Supported     \\
-    www.apache.org/      & 2010          & Validation • Expiration & 3            & Supported     \\
-    www.studiocamer.com/ & 3340          & Validation • Expiration & 2 • 3        & Supported     \\
-    www.off---white.com/ & 6790          & Validation              & 1.1 • 2 • 3  & Supported     \\
-    www.google.com       & 2350          & Validation • Expiration & 1.1 • 2 • 3  & Supported     \\
-    \hline
-  \end{tabular}
-  \caption{Website used for the analysis}
-  \label{tab-2}
+	\tiny
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\linewidth=0cm
+		Website              & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
+		\hline
+		www.pedranzini.it/   & 180.40        & Validation              & 1.1          & Not supported \\
+		www.unica.it/        & 2570          & Validation              & 1.1          & Supported     \\
+		www.uniss.it/        & 2540          & Validation • Expiration & 1.1          & Supported     \\
+		www.vallespluga.it/  & 20120         & Validation              & 1.1          & Supported     \\
+		www.istat.it/        & 11200         & Validation              & 1.1          & Supported     \\
+		www.unina.it/        & 2210          & Validation              & 1.1          & Supported     \\
+		www.apache.org/      & 2010          & Validation • Expiration & 3            & Supported     \\
+		www.studiocamer.com/ & 3340          & Validation • Expiration & 2 • 3        & Supported     \\
+		www.off---white.com/ & 6790          & Validation              & 1.1 • 2 • 3  & Supported     \\
+		www.google.com       & 2350          & Validation • Expiration & 1.1 • 2 • 3  & Supported     \\
+		\hline
+	\end{tabular}
+	\caption{Website used for the analysis}
+	\label{tab-2}
 \end{table}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/plt_cache_policy.png}
-  \caption{Page load time over page size for different cache policies for different HTTP versions}
-  \label{fig-2}
+	\centering
+	\includegraphics[width=\columnwidth]{images/plt_cache_policy.png}
+	\caption{Page load time over page size for different cache policies for different HTTP versions}
+	\label{fig-2}
 \end{figure}
 
 \subsection{Performance analisys using  Apache HTTP server benchmarking tool}
@@ -149,8 +149,8 @@ Below an example of the command used to perform the analysis, where the number o
 \end{lstlisting}
 
 \subsubsection*{Analyze and discuss the performance of different commercial/institutional websites obtained
-  under different conditions using the ab – Apache HTTP server benchmarking tool. Did you
-  notice any expected or unexpected behavior?}
+	under different conditions using the ab – Apache HTTP server benchmarking tool. Did you
+	notice any expected or unexpected behavior?}
 The websites listed in Table \ref{tab-3} were subjected to analysis using the 'ab' command to evaluate their performance under different conditions.
 Specifically, the impact of concurrency level on requests per second and transfer rate was assessed, as depicted in Figure \ref*{fig-3} and \ref*{fig-4} respectively.
 The results indicate that increasing the concurrency level leads to higher requests per second and transfer rate,
@@ -177,41 +177,41 @@ before generating the complete response, is found to be lower than the processin
 possibly due to optimized resource access or caching mechanisms employed by the server.
 \rowcolors{2}{purple!8}{purple!18}
 \begin{table}[H]
-  \tiny
-  \centering
-  \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    \linewidth=0cm
-    Website                     & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
-    \hline
-    www.pedranzini.it/          & 180.40        & Validation              & 1.1          & Not supported \\
-    www.vallespluga.it/         & 20120         & Validation              & 1.1          & Supported     \\
-    www.galbusera.it/chi-siamo/ & 15610         & Validation • Expiration & 3            & Supported     \\
-    \hline
-  \end{tabular}
-  \caption{Website used for the analysis}
-  \label{tab-3}
+	\tiny
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\linewidth=0cm
+		Website                     & Page size(KB) & Cache policy            & HTTP version & HTTPS         \\
+		\hline
+		www.pedranzini.it/          & 180.40        & Validation              & 1.1          & Not supported \\
+		www.vallespluga.it/         & 20120         & Validation              & 1.1          & Supported     \\
+		www.galbusera.it/chi-siamo/ & 15610         & Validation • Expiration & 3            & Supported     \\
+		\hline
+	\end{tabular}
+	\caption{Website used for the analysis}
+	\label{tab-3}
 \end{table}
 
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/Request_per_second_diff_conc.png}
-  \caption{Number of request per second for different number of concurrent connections for different sites}
-  \label{fig-3}
+	\centering
+	\includegraphics[width=\columnwidth]{images/Request_per_second_diff_conc.png}
+	\caption{Number of request per second for different number of concurrent connections for different sites}
+	\label{fig-3}
 \end{figure}
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/transf_diff_conc.png}
-  \caption{Transfer rate for different number of concurrent connections for different sites}
-  \label{fig-4}
+	\centering
+	\includegraphics[width=\columnwidth]{images/transf_diff_conc.png}
+	\caption{Transfer rate for different number of concurrent connections for different sites}
+	\label{fig-4}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/time_diff_server.png}
-  \caption{Time spent for the connection, for processing and for waiting for different sites}
-  \label{fig-5}
+	\centering
+	\includegraphics[width=\columnwidth]{images/time_diff_server.png}
+	\caption{Time spent for the connection, for processing and for waiting for different sites}
+	\label{fig-5}
 \end{figure}
 
 \subsection{Performance analisys using h2load}
@@ -244,9 +244,9 @@ providing a more accurate assessment of the website's performance and the server
 
 
 \subsubsection*{Analyze and discuss the performance of different commercial/institutional websites obtained
-  under different conditions using the nghttp and h2load tools. In the experiments with
-  h2load analyze the role of the warm-up time. Did you notice any expected or unexpected
-  behavior?}
+	under different conditions using the nghttp and h2load tools. In the experiments with
+	h2load analyze the role of the warm-up time. Did you notice any expected or unexpected
+	behavior?}
 To analyze the role of warm-up time, performance tests were conducted using h2load.
 The tests were designed to measure the impact of warm-up time and the number of connections on website performance.
 Each test ran for 30 seconds, varying the number of connections and warm-up times at 1, 2, 4, 8, and 16.\\
@@ -265,44 +265,56 @@ influenced by factors such as server caching, resource availability, and network
 Further analysis and experimentation are necessary to understand the underlying reasons behind these observed results and their broader implications.
 \rowcolors{2}{purple!8}{purple!18}
 \begin{table}[H]
-  \tiny
-  \centering
-  \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    \linewidth=0cm
-    Website                     & Page size(KB) & Cache policy            & HTTP version & HTTPS     \\
-    \hline
-    www.youtube.com/            & 14050         & Validation • Expiration & 1.1          & supported \\
-    www.reddit.it/              & 17360         & Validation              & 2            & Supported \\
-    www.regionelombardia.it/    & 13580         & Validation • Expiration & 1.1          & Supported \\
-    www.galbusera.it/chi-siamo/ & 15610         & Validation • Expiration & 3            & Supported \\
-    \hline
-  \end{tabular}
-  \caption{Website used for the analysis}
-  \label{tab-4}
+	\tiny
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\linewidth=0cm
+		Website                     & Page size(KB) & Cache policy            & HTTP version & HTTPS     \\
+		\hline
+		www.youtube.com/            & 14050         & Validation • Expiration & 1.1          & supported \\
+		www.reddit.it/              & 17360         & Validation              & 2            & Supported \\
+		www.regionelombardia.it/    & 13580         & Validation • Expiration & 1.1          & Supported \\
+		www.galbusera.it/chi-siamo/ & 15610         & Validation • Expiration & 3            & Supported \\
+		\hline
+	\end{tabular}
+	\caption{Website used for the analysis}
+	\label{tab-4}
 \end{table}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/transf_rate_diff_warm_up.png}
-  \caption{Transfer rate for different warm up time for different sites}
-  \label{fig-6}
+	\centering
+	\includegraphics[width=\columnwidth]{images/transf_rate_diff_warm_up.png}
+	\caption{Transfer rate for different warm up time for different sites}
+	\label{fig-6}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/mean_time_warm_up.png}
-  \caption{mean time for different warm up time for different concurrent connections}
-  \label{fig-7}
+	\centering
+	\includegraphics[width=\columnwidth]{images/mean_time_warm_up.png}
+	\caption{mean time for different warm up time for different concurrent connections}
+	\label{fig-7}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\columnwidth]{images/var_warm_up.png}
-  \caption{Standard deviation for different warm up time for different concurrent connections}
-  \label{fig-8}
+	\centering
+	\includegraphics[width=\columnwidth]{images/var_warm_up.png}
+	\caption{Standard deviation for different warm up time for different concurrent connections}
+	\label{fig-8}
 \end{figure}
 
 \section{Conclusions}
+
+In conclusion, this report has delved into the impact of web technologies on Page Load Times (PLTs) for commercial and institutional websites.
+Through the analysis of parallel connections, caching policies, and performance evaluation tools, valuable informations have been gained regarding website optimization.\\
+The findings indicate that increasing the number of parallel connections can significantly reduce loading times,
+particularly for larger websites with extensive content. Additionally, websites supporting newer versions of the HTTP protocol,
+such as HTTP/2 and HTTP/3, consistently exhibit faster loading times compared to those supporting only HTTP/1.1.
+The implementation of effective caching policies, including both validation and expiration mechanisms,
+has also been shown to contribute to shorter PLTs.\\
+However, it is important to note that these analyses alone are not sufficient to draw definitive conclusions.
+The performance of a website is influenced by various factors, including server configuration, network conditions, and user behavior.
+Further research and experimentation are necessary to gain a more comprehensive understanding of web technologies'
+impact on PLTs and to develop effective optimization strategies.
 
 \end{document}

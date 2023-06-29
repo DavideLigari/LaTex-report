@@ -283,17 +283,17 @@
 \renewcommand{\section}{\@startsection{section}{1}{0mm}%
   {-12pt}%
   {6pt}%
-  {\setlength\parindent{0em} \fontsize{12}{14} \selectfont \bfseries\textsc}}%
+  {\setlength\parindent{0em} \fontsize{13}{15} \selectfont \bfseries\textsc}}%
 \renewcommand \thesubsection{\alph{subsection}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
   {-12pt}%
   {6pt}%
-  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \bfseries\textit}}%
+  {\setlength\parindent{0em} \fontsize{12}{13} \selectfont \bfseries}}%
 \renewcommand \thesubsubsection{\arabic{subsubsection}}
 \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
   {-12pt}%
   {6pt}%
-  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \textit}}
+  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \bfseries\textit}}
 
 
 
