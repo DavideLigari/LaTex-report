@@ -231,8 +231,8 @@
         \else
         \begin{tabular}[c]{c}%
           {\@author}                                         \\
-          {\fontsize{8}{10} \selectfont Contact: \href{mailto:\@theemail}{\nolinkurl{\@theemail}}} \\
           {\fontsize{8}{10} \selectfont Github repository: \url{\@github}} \\
+          {\fontsize{8}{10} \selectfont Contact: \href{mailto:\@theemail}{\nolinkurl{\@theemail}}} \\
           {\fontsize{8}{10} \selectfont Date: \@publicationdate}
         \end{tabular}
         \fi
