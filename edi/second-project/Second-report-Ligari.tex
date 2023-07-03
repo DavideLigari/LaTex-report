@@ -18,7 +18,7 @@
 \publicationdate{\today}
 % Place your particular definitions here
 \newcommand{\vect}[1]{\mathbf{#1}}  % vectors
-
+\github{https://github.com/DavideLigari01/Enterprise-Digital-Infrastructure}
 
 \abstract{
   This report examines the impact of web technologies on Page Load Times (PLTs) for commercial and institutional websites. 
@@ -34,7 +34,8 @@
 \maketitle
 \tableofcontents
 \thispagestyle{FirstPage}
-\section{Web technologies}
+
+\section{Introduction}
 \firstword{I}{n}
 today's digital landscape, web technologies play a pivotal role in determining the performance and overall user experience of modern websites.
 As the internet continues to evolve and user expectations rise, it becomes increasingly crucial to understand the profound impact
@@ -42,7 +43,7 @@ that these technologies have on Page Load Times (PLTs) for commercial and instit
 This report aims to delve into various aspects of web technologies,
 exploring their effects on PLTs and providing valuable insights to optimize website performance.
 
-\subsection{Impact of parallel connections on PLTs}
+\section{Impact of parallel connections on PLTs}
 \subsubsection*{Analyze and discuss the impacts of the number of parallel connections set inside the browser
 	on the Page Load Times of commercial/institutional websites. Did you notice any expected or
 	unexpected behavior?}
@@ -84,7 +85,7 @@ To provide additional context, the table below presents the websites used for th
 \end{figure}
 
 \pagestyle{OtherPage}
-\subsection{Impact of caching policies on PLTs}
+\section{Impact of caching policies on PLTs}
 \subsubsection*{Analyze and discuss the impacts of caching policies implemented by different
 	commercial/institutional websites on the Page Load Times. Consider websites that support
 	HTTP/1.1, HTTP/2 and HTTP/3 (possibly with unsecure and secure connections). Did you notice
@@ -138,7 +139,7 @@ each site was assigned the most commonly used HTTP cache policy and protocol.
 	\label{fig-2}
 \end{figure}
 
-\subsection{Performance analisys using  Apache HTTP server benchmarking tool}
+\section{Performance analisys using  Apache HTTP server benchmarking tool}
 Ab (ApacheBench), it is a command-line tool that comes bundled with the Apache HTTP Server.
 It is designed to perform load testing and measure the performance of web servers.
 The "ab" tool allows users to simulate multiple concurrent requests to a web server and record various performance metrics,
@@ -214,7 +215,7 @@ possibly due to optimized resource access or caching mechanisms employed by the 
 	\label{fig-5}
 \end{figure}
 
-\subsection{Performance analisys using h2load}
+\section{Performance analisys using h2load}
 
 h2load is a command-line benchmarking tool specifically designed for testing the performance of HTTP/2 and HTTP/3 servers.
 It is part of the nghttp2 project, which focuses on developing and maintaining tools and libraries for working with HTTP/2 and HTTP/3 protocols.
@@ -226,21 +227,15 @@ Below an example of usage.
   h2load --duration=30 -c 16 --warm-up-time=4  https://www.galbusera.it/chi-siamo/
 \end{lstlisting}
 
-\subsection{The role of Warm up time}
-The warm-up time refers to the initial period during which the load generator gradually ramps up
-the number of concurrent requests before reaching the desired load level for the test.\\
-The purpose of the warm-up time is to simulate a more realistic user behavior and allow the server to stabilize under increasing load.
-By gradually increasing the number of concurrent requests, it helps to avoid sudden spikes in traffic that may not accurately represent
-how users interact with the website.\\
-During the warm-up phase, the load generator starts with a lower number of concurrent requests and gradually
-increases it over a predefined period of time or until a specific load level is reached.
-This gradual increase allows the server to adjust to the increasing load, initialize any necessary resources,
-and optimize its performance before the actual testing phase begins.\\
-The duration of the warm-up time can vary depending on the specific testing scenario and the characteristics of the website being tested.
-It is typically determined based on factors such as the expected user behavior,
-the server's response time under increasing load, and any specific performance goals or requirements.\\
-By including a warm-up time in the testing process, the results obtained from h2load or similar tools are more representative of real-world usage patterns,
-providing a more accurate assessment of the website's performance and the server's ability to handle increasing loads over time.
+\section{The role of Warm up time}
+The warm-up time in h2load plays an important role in ensuring accurate performance measurements that reflect the server's stable behavior under load.\\
+The introduction of the warm-up phase is motivated by the fact that at the beginning of a load test, the server and the network environment may be in a transient state. 
+This means that network connections may take time to establish, cache systems may require population, or server resources may be dynamically allocated.\\
+These factors can influence the initial requests sent to the server and produce results that are not representative of 
+its actual performance once it reaches a stable state. 
+The warm-up phase helps address this issue by allowing the system to stabilize before measuring the actual performance.\\
+In essence, the warm-up phase enables more reliable and realistic measurements of the server's performance. 
+By eliminating the effects of transient factors, it ensures that the measurements reflect the server's true potential when subjected to a steady workload.
 
 
 \subsubsection*{Analyze and discuss the performance of different commercial/institutional websites obtained

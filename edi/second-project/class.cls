@@ -66,6 +66,8 @@
 \usepackage{listings}
 \usepackage{subcaption}
 \usepackage{biblatex}
+% Define dark blue color
+\definecolor{darkblue}{rgb}{0,0,0.5} % Dark blue color
 %%% PDF file setup
 \usepackage[bookmarks,
   bookmarksopen = true,
@@ -73,7 +75,7 @@
   breaklinks = true,
   colorlinks = true,
   linkcolor = black,
-  urlcolor  = black,
+  urlcolor  = darkblue,
   citecolor = black,
   anchorcolor = green,
   hyperindex = true,
@@ -138,6 +140,8 @@
 % Definition for contact data
 \def\contactauthor#1{\gdef\@thecontactauthor{#1}}
 \def\email#1{\gdef\@theemail{#1}}
+\def\github#1{\gdef\@github{#1}}
+
 
 
 % Header Definitions
@@ -180,12 +184,12 @@
 
 % Configuration of figure headings
 \usepackage{caption}
-\captionsetup[figure]{font=small,labelfont=bf,justification=centering}
+\captionsetup[figure]{font=scriptsize,labelfont=bf,justification=centering}
 \captionsetup[figure]{name=Fig.}
 \DeclareCaptionFormat{myformat}{#1#2#3}%\rule{\linewidth}{.3pt}}
 \captionsetup[figure]{format=myformat}
 
-\captionsetup[table]{font=small,labelfont=bf,justification=centering}
+\captionsetup[table]{font=scriptsize,labelfont=bf,justification=centering}
 \captionsetup[table]{name=Table}
 \DeclareCaptionFormat{myformat}{#1#2#3}%\rule{\linewidth}{.3pt}}
 \captionsetup[table]{format=myformat}
@@ -227,7 +231,8 @@
         \else
         \begin{tabular}[c]{c}%
           {\@author}                                         \\
-          {\fontsize{8}{10} \selectfont Contact: \@theemail} \\
+          {\fontsize{8}{10} \selectfont Contact: \href{mailto:\@theemail}{\nolinkurl{\@theemail}}} \\
+          {\fontsize{8}{10} \selectfont Github repository: \url{\@github}} \\
           {\fontsize{8}{10} \selectfont Date: \@publicationdate}
         \end{tabular}
         \fi
@@ -283,7 +288,7 @@
 \renewcommand{\section}{\@startsection{section}{1}{0mm}%
   {-12pt}%
   {6pt}%
-  {\setlength\parindent{0em} \fontsize{13}{15} \selectfont \bfseries\textsc}}%
+  {\setlength\parindent{0em} \fontsize{12}{13} \selectfont \bfseries\textsc}}%
 \renewcommand \thesubsection{\alph{subsection}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
   {-12pt}%
@@ -293,7 +298,7 @@
 \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
   {-12pt}%
   {6pt}%
-  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \bfseries\textit}}
+  {\setlength\parindent{0em} \fontsize{11}{13} \selectfont \textit}}
 
 
 
