@@ -1,6 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{class}[2019/10/29 AJCEAM paper class]
-
 % Initial Statements
 \DeclareOption{11pt}{\OptionNotUsed}
 \DeclareOption{12pt}{\OptionNotUsed}
@@ -66,8 +65,7 @@
 \usepackage{listings}
 \usepackage{subcaption}
 \usepackage{biblatex}
-% Define dark blue color
-\definecolor{darkblue}{rgb}{0,0,0.5} % Dark blue color
+
 %%% PDF file setup
 \usepackage[bookmarks,
   bookmarksopen = true,
@@ -75,7 +73,7 @@
   breaklinks = true,
   colorlinks = true,
   linkcolor = black,
-  urlcolor  = darkblue,
+  urlcolor  = black,
   citecolor = black,
   anchorcolor = green,
   hyperindex = true,
@@ -201,7 +199,6 @@
 \addtolength{\belowcaptionskip}{-8pt}
 \addtolength{\abovecaptionskip}{0pt}
 
-
 % Work job cover
 \newcommand*\varhrulefill[1][0.4pt]{\leavevmode\leaders\hrule height#1\hfill\kern0pt}
 \renewcommand{\@maketitle}{%
@@ -231,8 +228,8 @@
         \else
         \begin{tabular}[c]{c}%
           {\@author}                                         \\
-          {\fontsize{8}{10} \selectfont Github repository: \url{\@github}} \\
-          {\fontsize{8}{10} \selectfont Contact: \href{mailto:\@theemail}{\nolinkurl{\@theemail}}} \\
+          {\fontsize{8}{10} \selectfont Github repository: \textit{\url{\@github}}} \\
+          {\fontsize{8}{10} \selectfont Contact: \href{mailto:\@theemail}{\textit{\nolinkurl{\@theemail}}}} \\
           {\fontsize{8}{10} \selectfont Date: \@publicationdate}
         \end{tabular}
         \fi
