@@ -100,8 +100,6 @@
 \def\abstract#1{\gdef\@englishabstract{#1}}        % Abstract in English
 \def\github#1{\gdef\@github{#1}}
 \def\keywords#1{\gdef\@englishkeywords{#1}}        % Keywords in English
-\def\resumo#1{\gdef\@portugueseabstract{#1}}        % Resumen en inglés
-\def\palavraschave#1{\gdef\@portuguesekeywords{#1}}        % Palabras clave en inglés
 
 % Definition for contact data
 \def\contactauthor#1{\gdef\@thecontactauthor{#1}}

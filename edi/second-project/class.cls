@@ -8,42 +8,13 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \newif\if@isblind\@isblindfalse
 \DeclareOption{blind}{\@isblindtrue}
-% Language Statements
-\newif\iflang@eng
-\newif\iflang@por
-\def\lang@mutopterr{%
-  \PackageError{lang}{Options 'eng' and 'por' are mutually exclusive.}{}%
-}%
-\DeclareOption{eng}{%
-  \iflang@por\lang@mutopterr\fi
-  \lang@engtrue\lang@porfalse
-}
-\DeclareOption{por}{%
-  \iflang@eng\lang@mutopterr\fi
-  \lang@engfalse\lang@portrue
-}
 
 \ProcessOptions\relax
 \LoadClass[twoside,a4paper,10pt,twocolumn,english]{article}
 
-% Default language: English
-\iflang@eng
-\else
-  \iflang@por
-  \else
-    \lang@engtrue\lang@porfalse
-  \fi
-\fi
-
-
 % Required Packages
 \usepackage[utf8]{inputenc}
-\iflang@eng
-  \usepackage[english]{babel}
-\fi
-\iflang@por
-  \usepackage[portuguese,english]{babel}
-\fi
+\usepackage[english]{babel}
 \usepackage{multirow}
 \usepackage[T1]{fontenc}
 \usepackage{ae,aecompl}
@@ -117,14 +88,8 @@
 % Author and Affiliate Setup
 \usepackage[noblocks]{authblk}
 \renewcommand\AB@affilsepx{\protect\par\protect\Affilfont}
-\iflang@eng
-  \renewcommand\Authands{ and }
-  \renewcommand\Authand{ and }
-\fi
-\iflang@por
-  \renewcommand\Authands{ e }
-  \renewcommand\Authand{ e }
-\fi
+\renewcommand\Authands{ and }
+\renewcommand\Authand{ and }
 \renewcommand{\Affilfont}{\fontsize{9}{12} \selectfont \itshape}
 \renewcommand{\Authfont}{\fontsize{12}{14} \selectfont}
 
@@ -132,8 +97,6 @@
 \def\publicationdate#1{\gdef\@publicationdate{#1}}   % Publication Date
 \def\abstract#1{\gdef\@englishabstract{#1}}        % Abstract in English
 \def\keywords#1{\gdef\@englishkeywords{#1}}        % Keywords in English
-\def\resumo#1{\gdef\@portugueseabstract{#1}}        % Resumen en inglés
-\def\palavraschave#1{\gdef\@portuguesekeywords{#1}}        % Palabras clave en inglés
 
 % Definition for contact data
 \def\contactauthor#1{\gdef\@thecontactauthor{#1}}
@@ -142,7 +105,6 @@
 
 % Header Definitions
 \def\title#1{\gdef\@title{#1}\gdef\thetitle{#1}}
-\def\titulo#1{\gdef\@titulo{#1}}
 \def\shorttitle#1{\gdef\@theshorttitle{#1}}
 \def\firstauthor#1{\gdef\@thefirstauthor{#1}}
 
@@ -150,23 +112,13 @@
   \begingroup
   \ifnum\value{authors}<4 % One author
     \if@isblind
-      \iflang@eng
-        AUTHOR
-      \fi
-      \iflang@por
-        AUTOR
-      \fi
+      AUTHOR
     \else
       \MakeUppercase{\@thefirstauthor}
     \fi
   \else % 4 or more authors
     \if@isblind
-      \iflang@eng
-        1st. AUTHOR~{\itshape et al.}
-      \fi
-      \iflang@por
-        1ro. AUTOR~{\itshape et al.}
-      \fi
+      1st. AUTHOR~{\itshape et al.}
     \else
       {\MakeUppercase{\@thefirstauthor}~{\itshape et al.}}
     \fi
@@ -207,23 +159,11 @@
   \vspace{0cm}%
   {\begin{center}%
       \noindent\varhrulefill[0.25mm] \par
-      \iflang@eng
       {\fontsize{20}{24} \selectfont \@title \par}
-      \fi
-      \iflang@por
-      {\fontsize{20}{24} \selectfont \@titulo \par}
-      \vspace{0.3cm}
-      {\fontsize{14}{16}\itshape \selectfont \@title \par}
-      \fi
       \noindent\varhrulefill[0.25mm] \par
       {\setlength{\tabcolsep}{0in}
         \if@isblind
-          \iflang@eng
-          {\fontsize{12}{14} \selectfont Version for reviewers.} \\
-        \fi
-        \iflang@por
-        {\fontsize{12}{14} \selectfont Versão para revisores.} \\
-        \fi
+        {\fontsize{12}{14} \selectfont Version for reviewers.} \\
         \else
         \begin{tabular}[c]{c}%
           {\@author}                                         \\
@@ -236,20 +176,9 @@
   %\vspace{0.3cm}
   \noindent\varhrulefill[0.25mm] \par
   \vspace{0.4cm}
-  \iflang@eng
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
-  \fi
-  \iflang@por
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Resumo}}---\@portugueseabstract} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12} \selectfont {\bfseries{Palavras-chave}}---\@portuguesekeywords} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12}\itshape \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
-    \vspace{0.3cm}
-    \noindent {\fontsize{9}{12}\itshape \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
-  \fi
+  \noindent {\fontsize{9}{12} \selectfont {\bfseries{Abstract}}---\@englishabstract} \par
+  \vspace{0.3cm}
+  \noindent {\fontsize{9}{12} \selectfont {\bfseries{Keywords}}---\@englishkeywords} \par
   \vspace{0.2cm}
   \noindent\varhrulefill[0.25mm]
   \twocolumn
@@ -311,14 +240,8 @@
   %\setlength{\bibhang}{\bibmargin}
   {\setstretch{0.85}
     \fontsize{8}{10} \selectfont
-    \iflang@eng
-      \bibliographystyle{un}
-      \renewcommand\refname{References}
-    \fi
-    \iflang@por
-      \bibliographystyle{IEEETran}
-      \renewcommand\refname{Referências}
-    \fi
+    \bibliographystyle{un}
+    \renewcommand\refname{References}
     \bibliography{#1}}
 }
 
